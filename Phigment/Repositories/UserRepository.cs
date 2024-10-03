@@ -34,5 +34,38 @@ namespace Phigment.Repositories
                 }
             }
         }
-    }
+        public User GetUserByDisplayName(string displayName)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT Id, DisplayName
+                        FROM [User]
+                        WHERE DisplayName = @displayName";
+
+                    DbUtils.AddParameter(cmd, "@displayName", displayName);
+
+                    User user = null;
+
+                    var reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        user = new User()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            DisplayName = DbUtils.GetString(reader, "DisplayName")
+                        };
+                    }
+                
+                    reader.Close();
+
+                    return user;
+                    }
+                }
+            }
+       }
 }
