@@ -1,0 +1,6 @@
+@Phigment_HostAddress = http://localhost:5276
+
+GET {{Phigment_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
