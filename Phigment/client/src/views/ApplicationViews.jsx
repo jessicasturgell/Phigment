@@ -1,4 +1,8 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
+import { Outlet, Route, Routes } from "react-router-dom";
+import PhigmentNavbar from "../components/nav/Navbar.jsx";
+import { Welcome } from "../components/welcome/Welcome.jsx";
 
 export const ApplicationViews = () => {
   const [currentUser, setCurrentUser] = useState({});
@@ -10,5 +14,19 @@ export const ApplicationViews = () => {
     setCurrentUser(phigmentUserObject);
   }, []);
 
-  return <>Hello</>;
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <PhigmentNavbar />
+            <Outlet />
+          </>
+        }
+      >
+        <Route index element={<Welcome />} />
+      </Route>
+    </Routes>
+  );
 };

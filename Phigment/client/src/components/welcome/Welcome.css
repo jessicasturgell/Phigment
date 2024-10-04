@@ -1,0 +1,25 @@
+body {
+  background-color: #aab0cc;
+}
+
+.welcome-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 190px;
+}
+
+.welcome-header {
+  text-align: center;
+  font-size: 72px;
+  margin-top: 94px;
+}
+
+.welcome-subheading {
+  text-align: center;
+  font-style: italic;
+}
+
+.cyan {
+  color: cyan;
+}

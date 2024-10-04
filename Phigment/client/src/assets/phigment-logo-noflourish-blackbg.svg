@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 253 56.5">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: aqua;
+      }
+
+      .cls-2 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-3 {
+        fill: #f0f;
+      }
+
+      .cls-4 {
+        font-family: GlassAntiqua-Regular, 'Glass Antiqua';
+        font-size: 72px;
+      }
+
+      .cls-5 {
+        fill: #ff0;
+      }
+    </style>
+  </defs>
+  <text class="cls-4" transform="translate(-.22 47.28)"><tspan class="cls-2" x="0" y="0">P</tspan><tspan class="cls-1" x="32.62" y="0">hi</tspan><tspan class="cls-3" x="83.23" y="0">gm</tspan><tspan class="cls-5" x="168.12" y="0">ent</tspan></text>
+</svg>

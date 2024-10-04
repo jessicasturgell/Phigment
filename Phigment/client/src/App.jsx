@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { Authorized } from "./views/Authorized.jsx";
 import { ApplicationViews } from "./views/ApplicationViews.jsx";

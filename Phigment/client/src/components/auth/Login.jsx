@@ -1,7 +1,9 @@
+import "./Login.css";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { getUserByDisplayName } from "../../managers/UserManager.jsx";
+import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 
 export const Login = () => {
   const [displayName, set] = useState("MizMooDeng");
@@ -26,32 +28,53 @@ export const Login = () => {
   };
 
   return (
-    <main>
-      <section>
-        <form onSubmit={handleLogin}>
-          <h1>Phigment</h1>
-          <h2>Please sign in</h2>
-          <fieldset>
-            <div>
-              <input
+    <div className="login-container">
+      <div className="login-containter-container">
+        <div className="flex-center">
+          <img src="src\assets\phigment-logo.svg" width="400px" />
+        </div>
+        <div className="login-form-container">
+          <div className="flex-center">
+            <h1 className="login-h1">Please log in to get started</h1>
+          </div>
+          <Form onSubmit={handleLogin}>
+            <FormGroup>
+              <Label for="username" hidden>
+                Email
+              </Label>
+              <Input
+                id="username"
+                name="username"
+                placeholder="Username"
+                type="text"
                 value={displayName}
                 onChange={(evt) => set(evt.target.value)}
-                placeholder="Username"
                 required
                 autoFocus
+                autoComplete="username"
               />
+            </FormGroup>{" "}
+            <FormGroup>
+              <Label for="examplePassword" hidden>
+                Password
+              </Label>
+              <Input
+                id="examplePassword"
+                name="password"
+                placeholder="Password"
+                type="password"
+                autoComplete="current-password"
+              />
+            </FormGroup>{" "}
+            <div className="flex-center">
+              <Button color="info">Submit</Button>
             </div>
-          </fieldset>
-          <fieldset>
-            <div>
-              <button type="submit">Sign in</button>
+            <div className="flex-center reglink">
+              <Link to="/register">Not a member yet?</Link>
             </div>
-          </fieldset>
-        </form>
-      </section>
-      <section>
-        <Link to="/register">Not a member yet?</Link>
-      </section>
-    </main>
+          </Form>
+        </div>
+      </div>
+    </div>
   );
 };
