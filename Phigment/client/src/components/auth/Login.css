@@ -1,8 +1,14 @@
+.login-bg {
+  background-image: url("src/assets/phigment-bgelements.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .login-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 200px;
+  height: 100vh;
 }
 
 .login-containter-container {
@@ -16,16 +22,16 @@
 }
 
 .flex-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-h1 {
-    color: white;
-    padding-bottom: 18px;
+  color: white;
+  padding-bottom: 18px;
 }
 
 .reglink {
-    padding-top: 12px;
+  padding-top: 12px;
 }

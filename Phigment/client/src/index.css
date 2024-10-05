@@ -1,0 +1,20 @@
+body {
+  background-color: #aab0cc !important;
+  min-height: 100vh;
+}
+
+.cyan {
+  color: cyan;
+}
+
+.magenta {
+  color: magenta;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.black {
+  color: black;
+}

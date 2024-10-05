@@ -2,10 +2,9 @@ import "./Login.css";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { getUserByDisplayName } from "../../managers/UserManager.jsx";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 
-export const Login = () => {
+export const Register = () => {
   const [displayName, set] = useState("MizMooDeng");
   const navigate = useNavigate();
 
@@ -26,24 +25,6 @@ export const Login = () => {
     };
   }, []);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-
-    getUserByDisplayName(displayName).then((user) => {
-      if (user && user.id) {
-        localStorage.setItem(
-          "phigment_user",
-          JSON.stringify({
-            id: user.id,
-          })
-        );
-        navigate("/");
-      } else {
-        window.alert("Invalid login");
-      }
-    });
-  };
-
   return (
     <div className="login-container">
       <div className="login-containter-container">
@@ -52,9 +33,9 @@ export const Login = () => {
         </div>
         <div className="login-form-container">
           <div className="flex-center">
-            <h1 className="login-h1">Please log in to get started</h1>
+            <h1 className="login-h1">Please register to get started</h1>
           </div>
-          <Form onSubmit={handleLogin}>
+          <Form>
             <FormGroup>
               <Label for="username" hidden>
                 Email
@@ -65,7 +46,6 @@ export const Login = () => {
                 placeholder="Username"
                 type="text"
                 value={displayName}
-                onChange={(evt) => set(evt.target.value)}
                 required
                 autoFocus
                 autoComplete="username"
@@ -87,7 +67,7 @@ export const Login = () => {
               <Button color="info">Submit</Button>
             </div>
             <div className="flex-center reglink">
-              <Link to="/register">Not a member yet?</Link>
+              <Link to="/login">Already have an account?</Link>
             </div>
           </Form>
         </div>

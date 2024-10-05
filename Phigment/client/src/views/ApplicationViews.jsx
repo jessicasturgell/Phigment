@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
 import PhigmentNavbar from "../components/nav/Navbar.jsx";
 import { Welcome } from "../components/welcome/Welcome.jsx";
+import { Explore } from "../components/explore/Explore.jsx";
 
 export const ApplicationViews = () => {
   const [currentUser, setCurrentUser] = useState({});
@@ -26,6 +27,7 @@ export const ApplicationViews = () => {
         }
       >
         <Route index element={<Welcome />} />
+        <Route path="explore" element={<Explore />} />
       </Route>
     </Routes>
   );

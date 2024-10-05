@@ -37,6 +37,26 @@ function PhigmentNavbar(args) {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
+              <NavLink href="/explore">
+                <span className="cyan">Explore</span>
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/palettes">
+                <span className="magenta">My Palettes</span>
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/projects">
+                <span className="yellow">My Projects</span>
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/profile">
+                <span className="cyan">My Profile</span>
+              </NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink
                 href="/"
                 onClick={() => {
@@ -44,7 +64,7 @@ function PhigmentNavbar(args) {
                   navigate("/", { replace: true });
                 }}
               >
-                Logout
+                <span className="magenta">Logout</span>
               </NavLink>
             </NavItem>
           </Nav>
