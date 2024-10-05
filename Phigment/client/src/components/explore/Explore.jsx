@@ -7,6 +7,7 @@ export const Explore = () => {
   const [complementaryColor, setComplementaryColor] = useState("");
   const [analogousColors, setAnalogousColors] = useState([]);
   const [triadicColors, setTriadicColors] = useState([]);
+  const [monochromaticColors, setMonochromaticColors] = useState([]);
 
   const getComplement = () => {
     const hsl = chroma(color).hsl();
@@ -33,10 +34,22 @@ export const Explore = () => {
     setTriadicColors([triadicLeft, triadicRight]);
   };
 
+  const getMonochromatic = () => {
+    const hsl = chroma(color).hsl();
+    const monochromatic = [
+      chroma.hsl(hsl[0], hsl[1], hsl[2] * 1.5).hex(), // lightest
+      chroma.hsl(hsl[0], hsl[1], hsl[2] * 1.25).hex(), // lighter
+      chroma.hsl(hsl[0], hsl[1], hsl[2] * 0.75).hex(), // darker
+      chroma.hsl(hsl[0], hsl[1], hsl[2] * 0.5).hex(), // darkest
+    ];
+    setMonochromaticColors(monochromatic);
+  };
+
   useEffect(() => {
     getComplement();
     getAnalogous();
     getTriadic();
+    getMonochromatic();
   }, [color]);
 
   return (
@@ -106,6 +119,28 @@ export const Explore = () => {
             <div
               className="swatch"
               style={{ backgroundColor: triadicColors[1] }}
+            ></div>
+          </div>
+          <h1>Monochromatic</h1>
+          <div className="flex">
+            <div
+              className="swatch"
+              style={{ backgroundColor: monochromaticColors[0] }}
+            ></div>
+            <div
+              className="swatch"
+              style={{
+                backgroundColor: monochromaticColors[1],
+              }}
+            ></div>
+            <div className="swatch" style={{ backgroundColor: color }}></div>
+            <div
+              className="swatch"
+              style={{ backgroundColor: monochromaticColors[2] }}
+            ></div>
+            <div
+              className="swatch"
+              style={{ backgroundColor: monochromaticColors[3] }}
             ></div>
           </div>
         </div>
