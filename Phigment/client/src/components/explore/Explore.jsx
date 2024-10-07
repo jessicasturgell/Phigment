@@ -11,6 +11,23 @@ export const Explore = () => {
   const [triadicColors, setTriadicColors] = useState([]);
   const [monochromaticColors, setMonochromaticColors] = useState([]);
 
+  useEffect(() => {
+    // sets the background image for this page
+    document.body.style.backgroundImage =
+      "url('/src/assets/phigment-bgelements-colorful.svg')";
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+    document.body.style.backgroundRepeat = "no-repeat";
+
+    // resets when leaving page
+    return () => {
+      document.body.style.backgroundImage = "";
+      document.body.style.backgroundSize = "";
+      document.body.style.backgroundPosition = "";
+      document.body.style.backgroundRepeat = "";
+    };
+  }, []);
+
   const getTextColor = () => {
     const contrastWithWhite = chroma.contrast("#ffffff", color);
     const contrastWithBlack = chroma.contrast("#000000", color);
@@ -68,7 +85,9 @@ export const Explore = () => {
     <>
       <div className="color-container">
         <div className="color-picker-container">
-          <h1>Select a color!</h1>
+          <h1>
+            Select a <span style={{ color: color }}>color</span>!
+          </h1>
           <p>
             We will automatically generate some color palettes based on common
             color harmonies.

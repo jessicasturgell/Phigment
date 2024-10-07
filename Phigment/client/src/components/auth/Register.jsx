@@ -17,7 +17,7 @@ export const Register = () => {
   useEffect(() => {
     // sets the background image for this page
     document.body.style.backgroundImage =
-      "url('/src/assets/phigment-bgelements.svg')";
+      "url('src/assets/phigment-bgelements-flipped.svg')";
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
     document.body.style.backgroundRepeat = "no-repeat";

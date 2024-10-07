@@ -16,6 +16,7 @@ namespace Phigment
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddTransient<IUserRepository, UserRepository>();
+            builder.Services.AddTransient<IPaletteRepository, PaletteRepository>();
 
             var app = builder.Build();
 
