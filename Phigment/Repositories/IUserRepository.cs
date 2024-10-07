@@ -6,5 +6,6 @@ namespace Phigment.Repositories
     {
         List<User> GetAll();
         public User GetUserByDisplayName(string displayName);
+        public void Add(User user);
     }
 }
