@@ -1,9 +1,10 @@
 import "./Explore.css";
 import chroma from "chroma-js";
+import { HexColorPicker } from "react-colorful";
 import { useEffect, useState } from "react";
 
 export const Explore = () => {
-  const [color, setColor] = useState("magenta");
+  const [color, setColor] = useState("#FF00FF");
   const [complementaryColor, setComplementaryColor] = useState("");
   const [analogousColors, setAnalogousColors] = useState([]);
   const [triadicColors, setTriadicColors] = useState([]);
@@ -56,22 +57,9 @@ export const Explore = () => {
     <>
       <div className="color-container">
         <div>
-          <div className="flex">
-            <h1>Select a color</h1>
-            <input
-              type="color"
-              defaultValue="#FF00FF"
-              onChange={(event) => {
-                setColor(event.target.value);
-              }}
-            />
-          </div>
-          <div
-            className="swatch"
-            style={{
-              backgroundColor: color,
-            }}
-          ></div>
+            <h1>Select a color!</h1>
+            <p>We will automatically generate some color palettes based on common color harmonies.</p>
+            <HexColorPicker color={color} onChange={setColor} />
         </div>
         <div>
           <h1>Complementary</h1>
