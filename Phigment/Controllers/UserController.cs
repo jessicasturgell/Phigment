@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Phigment.Models;
 using Phigment.Repositories;
 
 namespace Phigment.Controllers
@@ -30,6 +31,12 @@ namespace Phigment.Controllers
                 return NotFound();
             }
             return Ok(user);
+        }
+        [HttpPost]
+        public IActionResult Post(User user)
+        {
+            _userRepository.Add(user);
+            return CreatedAtAction("Get", new { id = user.Id }, user);
         }
     }
 }

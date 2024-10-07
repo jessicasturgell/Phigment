@@ -60,12 +60,31 @@ namespace Phigment.Repositories
                             DisplayName = DbUtils.GetString(reader, "DisplayName")
                         };
                     }
-                
+
                     reader.Close();
 
                     return user;
-                    }
                 }
             }
-       }
+        }
+        public void Add(User user)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                            INSERT INTO [User] (DisplayName)
+                            OUTPUT INSERTED.ID
+                            VALUES (@displayName)
+    ";
+
+                    DbUtils.AddParameter(cmd, "@displayName", user.DisplayName);
+
+                    user.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+    }
 }

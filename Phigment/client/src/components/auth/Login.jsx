@@ -57,7 +57,7 @@ export const Login = () => {
           <Form onSubmit={handleLogin}>
             <FormGroup>
               <Label for="username" hidden>
-                Email
+                Username
               </Label>
               <Input
                 id="username"
