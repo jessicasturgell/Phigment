@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Phigment.Models;
 using Phigment.Repositories;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -21,5 +22,30 @@ namespace Phigment.Controllers
         {
             return Ok(_paletteRepository.GetAll());
         }
+
+        // GET: api/<PaletteController>/5
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var palette = _paletteRepository.GetById(id);
+
+            if (palette == null)
+            {
+                return NotFound();
+            }
+            return Ok(palette);
+        }
+
+        // POST api/<PaletteController>
+        [HttpPost]
+        public IActionResult Palette(Palette palette)
+        {
+            _paletteRepository.Add(palette);
+            return CreatedAtAction("Get", new { id = palette.Id }, palette);
+        }
+
+        // PUT api/<PaletteController>/5
+
+        // DELETE api/<PaletteController>/5
     }
 }

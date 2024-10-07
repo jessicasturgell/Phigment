@@ -1,12 +1,13 @@
-﻿using Phigment.Models;
+﻿using Microsoft.Extensions.Hosting;
+using Phigment.Models;
 using Phigment.Utils;
 
 namespace Phigment.Repositories
 {
-    public class PaletteRepository : BaseRepository, IPaletteRepository
+    public class SwatchRepository : BaseRepository, ISwatchRepository
     {
-        public PaletteRepository(IConfiguration configuration) : base(configuration) { }
-        public List<Palette> GetAll()
+        public SwatchRepository(IConfiguration configuration) : base(configuration) { }
+        public List<Swatch> GetAll()
         {
             using (var conn = Connection)
             {
@@ -14,29 +15,31 @@ namespace Phigment.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, UserId, [Name], IsPublic
-                        FROM Palette
+                        SELECT Id, UserId, [Name], HEX, RGB, HSL
+                        FROM Swatch
 ";
                     var reader = cmd.ExecuteReader();
 
-                    var palettes = new List<Palette>();
+                    var swatches = new List<Swatch>();
                     while (reader.Read())
                     {
-                        palettes.Add(new Palette()
+                        swatches.Add(new Swatch()
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
                             UserId = DbUtils.GetInt(reader, "UserId"),
                             Name = DbUtils.GetString(reader, "Name"),
-                            IsPublic = DbUtils.GetBoolean(reader, "IsPublic"),
+                            HEX = DbUtils.GetString(reader, "HEX"),
+                            RGB = DbUtils.GetString(reader, "RGB"),
+                            HSL = DbUtils.GetString(reader, "HSL"),
                         });
                     }
                     reader.Close();
 
-                    return palettes;
+                    return swatches;
                 }
             }
         }
-        public Palette GetById(int id)
+        public Swatch GetById(int id)
         {
             using (var conn = Connection)
             {
@@ -44,47 +47,52 @@ namespace Phigment.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, UserId, [Name], IsPublic
-                        FROM Palette
+                        SELECT Id, UserId, [Name], HEX, RGB, HSL
+                        FROM Swatch
                         WHERE Id = @Id";
 
                     DbUtils.AddParameter(cmd, "@Id", id);
 
-                    Palette palette = null;
+                    Swatch swatch = null;
 
                     var reader = cmd.ExecuteReader();
 
                     if (reader.Read())
                     {
-                        palette = new Palette()
+                        swatch = new Swatch()
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
                             UserId = DbUtils.GetInt(reader, "UserId"),
                             Name = DbUtils.GetString(reader, "Name"),
-                            IsPublic = DbUtils.GetBoolean(reader, "IsPublic")
+                            HEX = DbUtils.GetString(reader, "HEX"),
+                            RGB = DbUtils.GetString(reader, "RGB"),
+                            HSL = DbUtils.GetString(reader, "HSL")
                         };
                     }
                     reader.Close();
 
-                    return palette;
+                    return swatch;
                 }
             }
         }
-        public void Add(Palette palette)
+
+        public void Add(Swatch swatch)
         {
             using (var conn = Connection)
             {
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO Palette (UserId, [Name], IsPublic)
+                    cmd.CommandText = @"INSERT INTO Swatch (UserId, [Name], HEX, RGB, HSL)
                                         OUTPUT INSERTED.ID
-                                        VALUES (@userId, @name, @isPublic)";
-                    DbUtils.AddParameter(cmd, "@userId", palette.UserId);
-                    DbUtils.AddParameter(cmd, "@name", palette.Name);
-                    DbUtils.AddParameter(cmd, "@isPublic", palette.IsPublic);
+                                        VALUES (@userId, @name, @hex, @rgb, @hsl)";
+                    DbUtils.AddParameter(cmd, "@userId", swatch.UserId);
+                    DbUtils.AddParameter(cmd, "@name", swatch.Name);
+                    DbUtils.AddParameter(cmd, "@hex", swatch.HEX);
+                    DbUtils.AddParameter(cmd, "@rgb", swatch.RGB);
+                    DbUtils.AddParameter(cmd, "@hsl", swatch.HSL);
 
-                    palette.Id = (int)cmd.ExecuteScalar();
+                    swatch.Id = (int)cmd.ExecuteScalar();
                 }
             }
         }
