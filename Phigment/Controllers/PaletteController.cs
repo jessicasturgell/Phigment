@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using Phigment.Models;
 using Phigment.Repositories;
 
@@ -45,7 +46,24 @@ namespace Phigment.Controllers
         }
 
         // PUT api/<PaletteController>/5
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Palette palette)
+        {
+            if (id != palette.Id)
+            {
+                return BadRequest();
+            }
+
+            _paletteRepository.Update(palette);
+            return NoContent();
+        }
 
         // DELETE api/<PaletteController>/5
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _paletteRepository.Delete(id);
+            return NoContent();
+        }
     }
 }

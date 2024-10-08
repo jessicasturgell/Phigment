@@ -46,7 +46,24 @@ namespace Phigment.Controllers
         }
 
         // PUT api/<SwatchController>/5
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Swatch swatch)
+        {
+            if (id != swatch.Id)
+            {
+                return BadRequest();
+            }
+
+            _swatchRepository.Update(swatch);
+            return NoContent();
+        }
 
         // DELETE api/<SwatchController>/5
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _swatchRepository.Delete(id);
+            return NoContent();
+        }
     }
 }

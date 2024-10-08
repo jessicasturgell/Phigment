@@ -7,5 +7,7 @@ namespace Phigment.Repositories
         List<Palette> GetAll();
         public Palette GetById(int id);
         public void Add (Palette palette);
+        public void Update(Palette palette);
+        public void Delete(int id);
     }
 }

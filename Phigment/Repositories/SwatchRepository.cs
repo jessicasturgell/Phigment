@@ -96,5 +96,47 @@ namespace Phigment.Repositories
                 }
             }
         }
+        public void Update(Swatch swatch)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE Swatch
+                           SET UserId = @userId,
+                               Name = @name,
+                               HEX = @hex,
+                               RGB = @rgb,
+                               HSL = @hsl
+                         WHERE Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@userId", swatch.UserId);
+                    DbUtils.AddParameter(cmd, "@name", swatch.Name);
+                    DbUtils.AddParameter(cmd, "@hex", swatch.HEX);
+                    DbUtils.AddParameter(cmd, "@rgb", swatch.RGB);
+                    DbUtils.AddParameter(cmd, "@hsl", swatch.HSL);
+                    DbUtils.AddParameter(cmd, "@id", swatch.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void Delete(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM Swatch WHERE Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

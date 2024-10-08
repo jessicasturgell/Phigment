@@ -88,5 +88,43 @@ namespace Phigment.Repositories
                 }
             }
         }
+        public void Update(Palette palette)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE Palette
+                           SET UserId = @userId,
+                               Name = @name,
+                               IsPublic = @isPublic
+                         WHERE Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@userId", palette.UserId);
+                    DbUtils.AddParameter(cmd, "@name", palette.Name);
+                    DbUtils.AddParameter(cmd, "@isPublic", palette.IsPublic);
+                    DbUtils.AddParameter(cmd, "@id", palette.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void Delete(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM Palette WHERE Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
