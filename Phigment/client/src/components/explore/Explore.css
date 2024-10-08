@@ -4,7 +4,8 @@
   border-radius: 4px;
   margin: 5px;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: flex-end;
 }
 
@@ -13,6 +14,11 @@
   font-weight: 700;
   font-size: 20px;
   padding-right: 5px;
+}
+
+.swatch-btn {
+  padding-right: 6px;
+  padding-top: 2px;
 }
 
 .color-container {
@@ -31,4 +37,10 @@
 
 .flex {
   display: flex;
+}
+
+.add-swatch-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
 }
