@@ -19,14 +19,26 @@ namespace Phigment.Controllers
 
         // GET: api/<PaletteController>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
             return Ok(_paletteRepository.GetAll());
         }
 
+        // GET: api/<PaletteController>/GetAllByUserId/5
+        [HttpGet("GetAllByUserId/{userId}")]
+        public IActionResult GetAllByUserId(int userId)
+        {
+            var palettes = _paletteRepository.GetAllByUserId(userId);
+            if (palettes == null)
+            {
+                return NotFound();
+            }
+            return Ok(palettes);
+        }
+
         // GET: api/<PaletteController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult GetById(int id)
         {
             var palette = _paletteRepository.GetById(id);
 
@@ -42,7 +54,7 @@ namespace Phigment.Controllers
         public IActionResult Palette(Palette palette)
         {
             _paletteRepository.Add(palette);
-            return CreatedAtAction("Get", new { id = palette.Id }, palette);
+            return CreatedAtAction("GetById", new { id = palette.Id }, palette);
         }
 
         // PUT api/<PaletteController>/5
