@@ -12,11 +12,12 @@ import {
 } from "reactstrap";
 import { addPalette, getAllPalettes } from "../../managers/PaletteManager.jsx";
 import { addPaletteSwatch } from "../../managers/PaletteSwatchManager.jsx";
-import { addSwatch } from "../../managers/SwatchManager.jsx";
+import { addSwatch, getAllSwatches } from "../../managers/SwatchManager.jsx";
 
 function AddSwatchToPalette({ args, currentUser, color }) {
   const [modal, setModal] = useState(false);
   const [palettes, setPalettes] = useState([]);
+  const [swatches, setSwatches] = useState([]);
   const [selectedPaletteId, setSelectedPaletteId] = useState(null);
   const [newPaletteName, setNewPaletteName] = useState("");
   const [newSwatchName, setNewSwatchName] = useState("");
@@ -26,6 +27,7 @@ function AddSwatchToPalette({ args, currentUser, color }) {
   useEffect(() => {
     if (currentUser && currentUser.id) {
       getAllPalettes(currentUser).then((palettes) => setPalettes(palettes));
+      getAllSwatches(currentUser).then((swatches) => setSwatches(swatches));
     }
   }, [currentUser]);
 
@@ -47,14 +49,27 @@ function AddSwatchToPalette({ args, currentUser, color }) {
             rgb: chroma(color).rgb().toString(),
             hsl: chroma(color).hsl().toString(),
           };
-          addSwatch(swatchObj).then((swatchResponse) => {
+
+          const foundSwatch = swatches.find(
+            (swatch) =>
+              swatch.hex === swatchObj.hex && swatch.name === swatchObj.name
+          );
+
+          if (foundSwatch) {
             const paletteSwatchObj = {
               paletteId: paletteResponse.id,
-              swatchId: swatchResponse,
+              swatchId: foundSwatch.id,
             };
-
             addPaletteSwatch(paletteSwatchObj);
-          });
+          } else {
+            addSwatch(swatchObj).then((swatchResponse) => {
+              const paletteSwatchObj = {
+                paletteId: paletteResponse.id,
+                swatchId: swatchResponse,
+              };
+              addPaletteSwatch(paletteSwatchObj);
+            });
+          }
         })
         .then(() => {
           toggle();
@@ -68,18 +83,29 @@ function AddSwatchToPalette({ args, currentUser, color }) {
         hsl: chroma(color).hsl().toString(),
       };
 
-      addSwatch(swatchObj)
-        .then((swatchResponse) => {
+      const foundSwatch = swatches.find(
+        (swatch) =>
+          swatch.hex === swatchObj.hex && swatch.name === swatchObj.name
+      );
+
+      if (foundSwatch) {
+        const paletteSwatchObj = {
+          paletteId: selectedPaletteId,
+          swatchId: foundSwatch.id,
+        };
+        addPaletteSwatch(paletteSwatchObj);
+      } else {
+        addSwatch(swatchObj).then((swatchResponse) => {
           const paletteSwatchObj = {
             paletteId: selectedPaletteId,
             swatchId: swatchResponse,
           };
           addPaletteSwatch(paletteSwatchObj);
-        })
-        .then(() => {
-          toggle();
         });
+      }
     }
+
+    toggle();
   };
 
   return (

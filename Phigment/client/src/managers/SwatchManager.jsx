@@ -13,3 +13,9 @@ export const addSwatch = (swatch) => {
       return data.id;
     });
 };
+
+export const getAllSwatches = (currentUser) => {
+  return fetch(`${baseUrl}GetAllByUserId/${currentUser.id}`).then((res) =>
+    res.json()
+  );
+};

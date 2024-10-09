@@ -24,6 +24,18 @@ namespace Phigment.Controllers
             return Ok(_swatchRepository.GetAll());
         }
 
+        // GET: api/<SwatchController>/GetAllByUserId/5
+        [HttpGet("GetAllByUserId/{userId}")]
+        public IActionResult GetAllByUserId(int userId)
+        {
+            var swatches = _swatchRepository.GetAllByUserId(userId);
+            if (swatches == null)
+            {
+                return NotFound();
+            }
+            return Ok(swatches);
+        }
+
         // GET api/<SwatchController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)

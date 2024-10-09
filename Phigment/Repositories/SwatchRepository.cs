@@ -39,6 +39,41 @@ namespace Phigment.Repositories
                 }
             }
         }
+        public List<Swatch> GetAllByUserId(int userId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT Id, UserId, [Name], HEX, RGB, HSL
+                        FROM Swatch
+                        WHERE UserId = @userId
+";
+                    cmd.Parameters.AddWithValue("@userId", userId);
+
+                    var reader = cmd.ExecuteReader();
+
+                    var swatches = new List<Swatch>();
+                    while (reader.Read())
+                    {
+                        swatches.Add(new Swatch()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            UserId = DbUtils.GetInt(reader, "UserId"),
+                            Name = DbUtils.GetString(reader, "Name"),
+                            HEX = DbUtils.GetString(reader, "HEX"),
+                            RGB = DbUtils.GetString(reader, "RGB"),
+                            HSL = DbUtils.GetString(reader, "HSL"),
+                        });
+                    }
+                    reader.Close();
+
+                    return swatches;
+                }
+            }
+        }
         public Swatch GetById(int id)
         {
             using (var conn = Connection)
