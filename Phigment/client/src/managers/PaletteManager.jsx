@@ -6,6 +6,12 @@ export const getAllPalettes = (currentUser) => {
   );
 };
 
+export const getAllPalettesWithSwatches = (currentUser) => {
+  return fetch(`${baseUrl}GetAllByUserIdWithSwatches/${currentUser.id}`).then(
+    (res) => res.json()
+  );
+};
+
 export const addPalette = (palette) => {
   return fetch(`${baseUrl}`, {
     method: "POST",
@@ -13,7 +19,5 @@ export const addPalette = (palette) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(palette),
-  })
-    .then((res) => res.json())
-    
+  }).then((res) => res.json());
 };

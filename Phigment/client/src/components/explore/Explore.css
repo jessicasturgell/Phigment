@@ -35,10 +35,6 @@
   border-radius: 25px;
 }
 
-.flex {
-  display: flex;
-}
-
 .add-swatch-btn {
   display: flex;
   justify-content: flex-end;

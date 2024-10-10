@@ -18,3 +18,7 @@ body {
 .black {
   color: black;
 }
+
+.flex {
+  display: flex;
+}
