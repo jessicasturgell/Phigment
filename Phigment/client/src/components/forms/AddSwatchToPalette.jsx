@@ -22,7 +22,10 @@ function AddSwatchToPalette({ args, currentUser, color }) {
   const [newPaletteName, setNewPaletteName] = useState("");
   const [newSwatchName, setNewSwatchName] = useState("");
 
-  const toggle = () => setModal(!modal);
+  const toggle = () => {
+    setSelectedPaletteId(null);
+    setModal(!modal);
+  };
 
   useEffect(() => {
     if (currentUser && currentUser.id) {
@@ -72,6 +75,7 @@ function AddSwatchToPalette({ args, currentUser, color }) {
           }
         })
         .then(() => {
+          setPalettes([]);
           toggle();
         });
     } else {
@@ -107,6 +111,9 @@ function AddSwatchToPalette({ args, currentUser, color }) {
 
     toggle();
   };
+
+  // next time try something like this!!!!
+  // addthing(palette).then(setState).then(() => {addnextThing(recentlysetstate)}).then(setstate)
 
   return (
     <div>
@@ -171,6 +178,3 @@ function AddSwatchToPalette({ args, currentUser, color }) {
 }
 
 export default AddSwatchToPalette;
-
-// next time try something like this!!!!
-// addthing(palette).then(setState).then(() => {addnextThing(recentlysetstate)}).then(setstate)
