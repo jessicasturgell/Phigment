@@ -36,6 +36,41 @@ namespace Phigment.Repositories
                 }
             }
         }
+
+        public List<Palette> GetAllByUserId(int userId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT Id, UserId, [Name], IsPublic
+                        FROM Palette
+                        WHERE UserId = @userId
+";
+                    cmd.Parameters.AddWithValue("@userId", userId);
+
+                    var reader = cmd.ExecuteReader();
+
+                    var palettes = new List<Palette>();
+                    while (reader.Read())
+                    {
+                        palettes.Add(new Palette()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            UserId = DbUtils.GetInt(reader, "UserId"),
+                            Name = DbUtils.GetString(reader, "Name"),
+                            IsPublic = DbUtils.GetBoolean(reader, "IsPublic"),
+                        });
+                    }
+                    reader.Close();
+
+                    return palettes;
+                }
+            }
+        }
+
         public Palette GetById(int id)
         {
             using (var conn = Connection)

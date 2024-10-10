@@ -2,8 +2,9 @@ import "./Explore.css";
 import chroma from "chroma-js";
 import { HexColorPicker } from "react-colorful";
 import { useEffect, useState } from "react";
+import AddSwatchToPalette from "../forms/AddSwatchToPalette.jsx";
 
-export const Explore = () => {
+export const Explore = ({ currentUser }) => {
   const [color, setColor] = useState("#ff00ff");
   const [textColor, setTextColor] = useState("");
   const [complementaryColor, setComplementaryColor] = useState("");
@@ -97,7 +98,7 @@ export const Explore = () => {
             <span
               style={{
                 backgroundColor: color,
-                color: textColor, // apca contrast implementation
+                color: textColor, // contrast implementation
               }}
             >
               {color}
@@ -114,22 +115,44 @@ export const Explore = () => {
                 backgroundColor: color,
               }}
             >
-              <span className="swatch-text">{color}</span>
+              <div className="swatch-btn">
+                <AddSwatchToPalette currentUser={currentUser} color={color} />
+              </div>
+              <div>
+                <span className="swatch-text">{color}</span>
+              </div>
             </div>
             <div
               className="swatch"
               style={{ backgroundColor: complementaryColor }}
             >
-              <span className="swatch-text">{complementaryColor}</span>
+              <div className="swatch-btn">
+                <AddSwatchToPalette
+                  currentUser={currentUser}
+                  color={complementaryColor}
+                />
+              </div>
+              <div>
+                <span className="swatch-text">{complementaryColor}</span>
+              </div>
             </div>
           </div>
+
           <h1>Analogous</h1>
           <div className="flex">
             <div
               className="swatch"
               style={{ backgroundColor: analogousColors[0] }}
             >
-              <span className="swatch-text">{analogousColors[0]}</span>
+              <div className="swatch-btn">
+                <AddSwatchToPalette
+                  currentUser={currentUser}
+                  color={analogousColors[0]}
+                />
+              </div>
+              <div>
+                <span className="swatch-text">{analogousColors[0]}</span>
+              </div>
             </div>
             <div
               className="swatch"
@@ -137,22 +160,44 @@ export const Explore = () => {
                 backgroundColor: color,
               }}
             >
-              <span className="swatch-text">{color}</span>
+              <div className="swatch-btn">
+                <AddSwatchToPalette currentUser={currentUser} color={color} />
+              </div>
+              <div>
+                <span className="swatch-text">{color}</span>
+              </div>
             </div>
             <div
               className="swatch"
               style={{ backgroundColor: analogousColors[1] }}
             >
-              <span className="swatch-text">{analogousColors[1]}</span>
+              <div className="swatch-btn">
+                <AddSwatchToPalette
+                  currentUser={currentUser}
+                  color={analogousColors[1]}
+                />
+              </div>
+              <div>
+                <span className="swatch-text">{analogousColors[1]}</span>
+              </div>
             </div>
           </div>
+
           <h1>Triadic</h1>
           <div className="flex">
             <div
               className="swatch"
               style={{ backgroundColor: triadicColors[0] }}
             >
-              <span className="swatch-text">{triadicColors[0]}</span>
+              <div className="swatch-btn">
+                <AddSwatchToPalette
+                  currentUser={currentUser}
+                  color={triadicColors[0]}
+                />
+              </div>
+              <div>
+                <span className="swatch-text">{triadicColors[0]}</span>
+              </div>
             </div>
             <div
               className="swatch"
@@ -160,22 +205,44 @@ export const Explore = () => {
                 backgroundColor: color,
               }}
             >
-              <span className="swatch-text">{color}</span>
+              <div className="swatch-btn">
+                <AddSwatchToPalette currentUser={currentUser} color={color} />
+              </div>
+              <div>
+                <span className="swatch-text">{color}</span>
+              </div>
             </div>
             <div
               className="swatch"
               style={{ backgroundColor: triadicColors[1] }}
             >
-              <span className="swatch-text">{triadicColors[1]}</span>
+              <div className="swatch-btn">
+                <AddSwatchToPalette
+                  currentUser={currentUser}
+                  color={triadicColors[1]}
+                />
+              </div>
+              <div>
+                <span className="swatch-text">{triadicColors[1]}</span>
+              </div>
             </div>
           </div>
+
           <h1>Monochromatic</h1>
           <div className="flex">
             <div
               className="swatch"
               style={{ backgroundColor: monochromaticColors[0] }}
             >
-              <span className="swatch-text">{monochromaticColors[0]}</span>
+              <div className="swatch-btn">
+                <AddSwatchToPalette
+                  currentUser={currentUser}
+                  color={monochromaticColors[0]}
+                />
+              </div>
+              <div>
+                <span className="swatch-text">{monochromaticColors[0]}</span>
+              </div>
             </div>
             <div
               className="swatch"
@@ -183,22 +250,51 @@ export const Explore = () => {
                 backgroundColor: monochromaticColors[1],
               }}
             >
-              <span className="swatch-text">{monochromaticColors[1]}</span>
+              <div className="swatch-btn">
+                <AddSwatchToPalette
+                  currentUser={currentUser}
+                  color={monochromaticColors[1]}
+                />
+              </div>
+              <div>
+                <span className="swatch-text">{monochromaticColors[1]}</span>
+              </div>
             </div>
             <div className="swatch" style={{ backgroundColor: color }}>
-              <span className="swatch-text">{color}</span>
+              <div className="swatch-btn">
+                <AddSwatchToPalette currentUser={currentUser} color={color} />
+              </div>
+              <div>
+                <span className="swatch-text">{color}</span>
+              </div>
             </div>
             <div
               className="swatch"
               style={{ backgroundColor: monochromaticColors[2] }}
             >
-              <span className="swatch-text">{monochromaticColors[2]}</span>
+              <div className="swatch-btn">
+                <AddSwatchToPalette
+                  currentUser={currentUser}
+                  color={monochromaticColors[2]}
+                />
+              </div>
+              <div>
+                <span className="swatch-text">{monochromaticColors[2]}</span>
+              </div>
             </div>
             <div
               className="swatch"
               style={{ backgroundColor: monochromaticColors[3] }}
             >
-              <span className="swatch-text">{monochromaticColors[3]}</span>
+              <div className="swatch-btn">
+                <AddSwatchToPalette
+                  currentUser={currentUser}
+                  color={monochromaticColors[3]}
+                />
+              </div>
+              <div>
+                <span className="swatch-text">{monochromaticColors[3]}</span>
+              </div>
             </div>
           </div>
         </div>
