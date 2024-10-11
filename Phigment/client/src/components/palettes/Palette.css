@@ -1,5 +1,7 @@
 .palette-list-container {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .palette-container {
@@ -17,19 +19,24 @@
   align-items: flex-end;
 }
 
+.palette-details-swatch {
+  width: 100px;
+  height: 100px;
+  border-radius: 4px;
+  margin: 5px;
+  display: flex;
+}
+
 .palette-list-swatch-text {
   font-weight: 700;
   font-size: 20px;
   padding-right: 5px;
 }
 
-.palette-list-name {
-  color: cyan;
-}
-
 .palette-list-header-link {
   color: cyan;
   text-decoration: none;
+  padding-right: 1em;
 }
 
 .palette-list-header-link:hover {
@@ -38,6 +45,17 @@
 
 .palette-list-header {
   color: magenta;
+  text-decoration: none;
+}
+
+.palette-details-header {
+  color: cyan;
+  text-decoration: none;
+}
+
+.palette-details-header:hover {
+  color: rgb(0, 172, 172);
+  text-decoration: none;
 }
 
 .palette-header-container {
@@ -55,4 +73,31 @@
 .header-container {
   display: flex;
   justify-content: space-between;
+}
+
+.palette-list-empty-swatch {
+  height: 100px;
+  width: 100%;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.palette-list-header-btns {
+  font-size: small;
+}
+
+.palette-list-title-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rename-delete-palette {
+  color: white;
+  padding-left: 3px;
+}
+
+.rename-delete-palette:hover {
+  color: rgb(175, 219, 219);
 }

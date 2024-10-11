@@ -7,13 +7,21 @@ import CreateNewPalette from "../forms/CreateNewPalette.jsx";
 export const PaletteList = ({ currentUser }) => {
   const [palettes, setPalettes] = useState([]);
 
-  useEffect(() => {
+  const fetchPalettes = () => {
     if (currentUser && currentUser.id) {
       getAllPalettesWithSwatches(currentUser).then((palettes) =>
         setPalettes(palettes)
       );
     }
+  };
+
+  useEffect(() => {
+    fetchPalettes();
   }, [currentUser]);
+
+  const handlePaletteListChange = () => {
+    fetchPalettes();
+  };
 
   return (
     <>
@@ -23,7 +31,10 @@ export const PaletteList = ({ currentUser }) => {
             My <span className="palette-list-header">Palettes</span>
           </h1>
           <div>
-            <CreateNewPalette currentUser={currentUser} />
+            <CreateNewPalette
+              currentUser={currentUser}
+              handlePaletteListChange={handlePaletteListChange}
+            />
           </div>
         </div>
         <p>
@@ -34,7 +45,12 @@ export const PaletteList = ({ currentUser }) => {
       <hr className="palette-list-hr" />
       <div className="palette-list-container">
         {palettes.map((palette) => (
-          <Palette key={palette.id} palette={palette} />
+          <Palette
+            key={palette.id}
+            palette={palette}
+            currentUser={currentUser}
+            handlePaletteListChange={handlePaletteListChange}
+          />
         ))}
       </div>
     </>

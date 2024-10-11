@@ -12,6 +12,12 @@ export const getAllPalettesWithSwatches = (currentUser) => {
   );
 };
 
+export const getPaletteByIdWithSwatches = (paletteId) => {
+  return fetch(`${baseUrl}GetByIdWithSwatches/${paletteId}`).then((res) =>
+    res.json()
+  );
+};
+
 export const addPalette = (palette) => {
   return fetch(`${baseUrl}`, {
     method: "POST",
@@ -20,4 +26,20 @@ export const addPalette = (palette) => {
     },
     body: JSON.stringify(palette),
   }).then((res) => res.json());
+};
+
+export const updatePalette = (palette) => {
+  return fetch(`${baseUrl}${palette.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(palette),
+  });
+};
+
+export const deletePalette = (paletteId) => {
+  return fetch(`${baseUrl}${paletteId}`, {
+    method: "DELETE",
+  });
 };

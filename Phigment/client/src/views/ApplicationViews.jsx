@@ -34,7 +34,7 @@ export const ApplicationViews = () => {
           path="palettes"
           element={<PaletteList currentUser={currentUser} />}
         />
-        <Route path="palettes/:id" element={<PaletteDetails />} />
+        <Route path="palettes/:paletteId" element={<PaletteDetails />} />
       </Route>
     </Routes>
   );

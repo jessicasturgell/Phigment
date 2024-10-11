@@ -57,9 +57,9 @@ CREATE TABLE [Swatch] (
     [Id] integer PRIMARY KEY IDENTITY(1,1),
     [UserId] integer NOT NULL,
     [Name] nvarchar(30) NOT NULL,
-    [HEX] nvarchar(7) NOT NULL,
-    [RGB] nvarchar(16) NOT NULL,
-    [HSL] nvarchar(16) NOT NULL,
+    [HEX] nvarchar(12) NOT NULL,
+    [RGB] nvarchar(20) NOT NULL,
+    [HSL] nvarchar(100) NOT NULL,
     CONSTRAINT [FK_Swatch_User] FOREIGN KEY ([UserId])
         REFERENCES [User] ([Id])
 );
@@ -89,9 +89,11 @@ CREATE TABLE [PaletteSwatch] (
     [PaletteId] integer NOT NULL,
     [SwatchId] integer NOT NULL,
     CONSTRAINT [FK_PaletteSwatch_Palette] FOREIGN KEY ([PaletteId])
-        REFERENCES [Palette] ([Id]),
+        REFERENCES [Palette] ([Id])
+        ON DELETE CASCADE,
     CONSTRAINT [FK_PaletteSwatch_Swatch] FOREIGN KEY ([SwatchId])
         REFERENCES [Swatch] ([Id])
+        ON DELETE CASCADE
 );
 
 CREATE TABLE [Image] (

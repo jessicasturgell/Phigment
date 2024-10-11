@@ -7,45 +7,42 @@ import {
   ModalFooter,
   Input,
 } from "reactstrap";
-import { addPalette } from "../../managers/PaletteManager.jsx";
+import { updatePalette } from "../../managers/PaletteManager.jsx";
 
-function CreateNewPalette({ args, currentUser, handlePaletteListChange }) {
+function RenamePalette({ args, currentUser, palette, handlePaletteListChange }) {
   const [modal, setModal] = useState(false);
-  const [palette, setPalette] = useState({});
-
-  const handleSave = () => {
-    if (palette.name) {
-      const singlePalette = {
-        name: palette.name,
-        userId: currentUser.id,
-        isPublic: false,
-      };
-
-      addPalette(singlePalette).then(toggle);
-    } else {
-      window.alert("Please give your palette a name!");
-    }
-  };
+  const [updatedPalette, setUpdatedPalette] = useState({});
 
   const toggle = () => {
     handlePaletteListChange();
     setModal(!modal);
   };
 
+  const handleSave = () => {
+    const editedPalette = {
+      id: palette.id,
+      name: updatedPalette.name,
+      userId: currentUser.id,
+      isPublic: false,
+    };
+
+    updatePalette(editedPalette).then(toggle);
+  };
+
   return (
     <div>
-      <Button color="primary" onClick={toggle}>
-        Create New Palette
-      </Button>
+      <span className="rename-delete-palette" onClick={toggle}>
+        rename
+      </span>
       <Modal isOpen={modal} toggle={toggle} {...args}>
-        <ModalHeader toggle={toggle}>Create New Palette</ModalHeader>
+        <ModalHeader toggle={toggle}>Rename Palette</ModalHeader>
         <ModalBody>
           <Input
-            placeholder="New Palette Name"
+            placeholder={palette.name}
             onChange={(event) => {
               const paletteCopy = { ...palette };
               paletteCopy.name = event.target.value;
-              setPalette(paletteCopy);
+              setUpdatedPalette(paletteCopy);
             }}
           ></Input>
         </ModalBody>
@@ -62,4 +59,4 @@ function CreateNewPalette({ args, currentUser, handlePaletteListChange }) {
   );
 }
 
-export default CreateNewPalette;
+export default RenamePalette;
