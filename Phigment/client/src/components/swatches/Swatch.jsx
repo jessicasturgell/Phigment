@@ -1,7 +1,9 @@
-export const Swatch = ({ swatch }) => {
+import DeleteSwatch from "../forms/SwatchDelete.jsx";
+import "./Swatch.css";
+
+export const Swatch = ({ swatch, handleSwatchListChange }) => {
   return (
     <>
-      {" "}
       <tr className="table-dark">
         <td>
           <center>
@@ -14,10 +16,15 @@ export const Swatch = ({ swatch }) => {
             ></div>
           </center>
         </td>
-        <td className="text-center">{swatch.name}</td>
-        <td className="text-center">{swatch.hex}</td>
-        <td className="text-center">{swatch.rgb}</td>
-        <td className="text-center">edit | delete</td>
+        <td>{swatch.name}</td>
+        <td>{swatch.hex}</td>
+        <td>{swatch.rgb}</td>
+        <td>
+          <DeleteSwatch
+            swatch={swatch}
+            handleSwatchListChange={handleSwatchListChange}
+          />
+        </td>
       </tr>
     </>
   );

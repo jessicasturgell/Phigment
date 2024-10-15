@@ -169,6 +169,7 @@ namespace Phigment.Repositories
                 }
             }
         }
+
         public List<Palette> GetAllByUserIdWithSwatches(int id)
         {
             using (var conn = Connection)
@@ -239,7 +240,7 @@ namespace Phigment.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT p.Id AS 'PaletteId', p.[Name] AS 'PaletteName', p.UserId, p.IsPublic, s.Id AS 'SwatchId', s.[Name] AS 'SwatchName', s.HEX, s.RGB, s.HSL
+                        SELECT p.Id AS 'PaletteId', p.[Name] AS 'PaletteName', p.UserId, p.IsPublic, s.Id AS 'SwatchId', s.[Name] AS 'SwatchName', s.HEX, s.RGB, s.HSL, ps.Id AS 'PaletteSwatchId'
                         FROM Palette p
                         LEFT JOIN PaletteSwatch ps ON ps.PaletteId = p.Id
                         LEFT JOIN Swatch s ON ps.SwatchId = s.Id
@@ -261,7 +262,7 @@ namespace Phigment.Repositories
                                 UserId = DbUtils.GetInt(reader, "UserId"),
                                 Name = DbUtils.GetString(reader, "PaletteName"),
                                 IsPublic = DbUtils.GetBoolean(reader, "IsPublic"),
-                                Swatches = new List<Swatch>()
+                                Swatches = new List<Swatch>(),
                             };
                         }
 
@@ -273,7 +274,11 @@ namespace Phigment.Repositories
                                 Name = DbUtils.GetString(reader, "SwatchName"),
                                 HEX = DbUtils.GetString(reader, "HEX"),
                                 RGB = DbUtils.GetString(reader, "RGB"),
-                                HSL = DbUtils.GetString(reader, "HSL")
+                                HSL = DbUtils.GetString(reader, "HSL"),
+                                PaletteSwatch = new PaletteSwatch()
+                                {
+                                    Id = DbUtils.GetInt(reader, "PaletteSwatchId")
+                                }
                             });
                         }
                     }

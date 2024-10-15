@@ -19,3 +19,4 @@ export const getAllSwatches = (currentUser) => {
     res.json()
   );
 };
+

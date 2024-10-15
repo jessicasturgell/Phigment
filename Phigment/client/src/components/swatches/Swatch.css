@@ -1,0 +1,10 @@
+.trash-btn {
+  width: 30px;
+}
+
+.trash-btn:hover {
+  border: 2px solid white;
+  border-radius: 15px;
+  width: 30px;
+  cursor: pointer;
+}

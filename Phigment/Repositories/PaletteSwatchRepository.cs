@@ -157,9 +157,15 @@ namespace Phigment.Repositories
 
                     cmd.ExecuteNonQuery();
                 }
+
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                DELETE FROM Swatch 
+                WHERE Id NOT IN (SELECT SwatchId FROM PaletteSwatch)";
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
-
-        
     }
 }

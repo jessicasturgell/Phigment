@@ -1,3 +1,4 @@
+import Logo from "../../assets/phigment-logo-noflourish-blackbg.svg";
 import React, { useState } from "react";
 import {
   Collapse,
@@ -7,11 +8,6 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
 } from "reactstrap";
 
 function PhigmentNavbar(args) {
@@ -26,7 +22,7 @@ function PhigmentNavbar(args) {
           {" "}
           <img
             alt="logo"
-            src="src\assets\phigment-logo-noflourish-blackbg.svg"
+            src={Logo}
             style={{
               height: 50,
               width: "auto",

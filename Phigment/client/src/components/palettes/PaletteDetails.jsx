@@ -7,15 +7,23 @@ import { Swatch } from "../swatches/Swatch.jsx";
 export const PaletteDetails = () => {
   const [palette, setPalette] = useState({});
 
+  const navigate = useNavigate();
+
   let { paletteId } = useParams();
 
-  console.log(paletteId);
-
-  useEffect(() => {
+  const fetchSwatches = () => {
     getPaletteByIdWithSwatches(paletteId).then((palette) =>
       setPalette(palette)
     );
-  }, [paletteId]);
+  };
+
+  useEffect(() => {
+    fetchSwatches();
+  }, []);
+
+  const handleSwatchListChange = () => {
+    fetchSwatches();
+  };
 
   return (
     <>
@@ -35,27 +43,27 @@ export const PaletteDetails = () => {
         <div className="header-container">
           <h2>Swatches in Palette</h2>{" "}
           <div>
-            <Button>Add New Swatch</Button>
+            <Button color="primary" onClick={() => navigate("/explore")}>
+              Add New Swatch
+            </Button>
           </div>
         </div>
       </div>
       <Table>
         <tbody>
           <tr className="table-dark">
-            <td className="text-center">SWATCH</td>
-            <td className="text-center" style={{ color: "cyan" }}>
-              NAME
-            </td>
-            <td className="text-center" style={{ color: "magenta" }}>
-              HEX
-            </td>
-            <td className="text-center" style={{ color: "yellow" }}>
-              RGB
-            </td>
-            <td className="text-center">MANAGE</td>
+            <td>SWATCH</td>
+            <td style={{ color: "cyan" }}>NAME</td>
+            <td style={{ color: "magenta" }}>HEX</td>
+            <td style={{ color: "yellow" }}>RGB</td>
+            <td>MANAGE</td>
           </tr>
           {palette.swatches?.map((swatch) => (
-            <Swatch key={swatch.id} swatch={swatch} />
+            <Swatch
+              key={swatch.id}
+              swatch={swatch}
+              handleSwatchListChange={handleSwatchListChange}
+            />
           ))}
         </tbody>
       </Table>

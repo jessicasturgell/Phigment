@@ -6,6 +6,8 @@ import { Welcome } from "../components/welcome/Welcome.jsx";
 import { Explore } from "../components/explore/Explore.jsx";
 import { PaletteList } from "../components/palettes/PaletteList.jsx";
 import { PaletteDetails } from "../components/palettes/PaletteDetails.jsx";
+import { ProjectList } from "../components/projects/ProjectList.jsx";
+import { Profile } from "../components/profile/profile.jsx";
 
 export const ApplicationViews = () => {
   const [currentUser, setCurrentUser] = useState({});
@@ -35,6 +37,11 @@ export const ApplicationViews = () => {
           element={<PaletteList currentUser={currentUser} />}
         />
         <Route path="palettes/:paletteId" element={<PaletteDetails />} />
+        <Route
+          path="projects"
+          element={<ProjectList currentUser={currentUser} />}
+        />
+        <Route path="profile" element={<Profile currentUser={currentUser} />} />
       </Route>
     </Routes>
   );

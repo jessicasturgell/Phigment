@@ -16,9 +16,13 @@
   padding-right: 5px;
 }
 
-.swatch-btn {
-  padding-right: 6px;
-  padding-top: 2px;
+/* .swatch-btn {
+} */
+
+.swatch-btn:hover {
+  border: 2px solid white;
+  border-radius: 15px;
+  cursor: pointer;
 }
 
 .color-container {

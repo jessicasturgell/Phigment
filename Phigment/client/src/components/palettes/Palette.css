@@ -101,3 +101,8 @@
 .rename-delete-palette:hover {
   color: rgb(175, 219, 219);
 }
+
+td {
+  vertical-align: middle;
+  text-align: center;
+}

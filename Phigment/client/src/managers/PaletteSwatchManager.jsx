@@ -13,3 +13,9 @@ export const addPaletteSwatch = (paletteSwatch) => {
       return data.id;
     });
 };
+
+export const deletePaletteSwatch = (paletteSwatchId) => {
+  return fetch(`${baseUrl}${paletteSwatchId}`, {
+    method: "DELETE",
+  });
+};
