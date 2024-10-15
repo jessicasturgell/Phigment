@@ -1,0 +1,33 @@
+.project-list-header {
+  color: yellow;
+}
+
+.project-header-container {
+  margin: 1em;
+}
+
+.project-list-hr {
+  margin: 0;
+  color: black;
+  border: 0;
+  border-top: var(--bs-border-width) solid;
+  opacity: 1;
+}
+
+.project {
+  background-color: #332d2d;
+  color: cyan;
+  font-size: 24px;
+  padding: .5em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.project-blurb {
+    margin: 1rem;
+}
+
+.project-mgt-text {
+    font-size: 16px;
+    font-weight: bold;
+}

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllPalettesWithSwatches } from "../../managers/PaletteManager.jsx";
 import { Palette } from "./palette.jsx";
-import { Button } from "reactstrap";
 import CreateNewPalette from "../forms/CreateNewPalette.jsx";
 
 export const PaletteList = ({ currentUser }) => {

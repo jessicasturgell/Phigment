@@ -19,6 +19,7 @@ namespace Phigment
             builder.Services.AddTransient<IPaletteRepository, PaletteRepository>();
             builder.Services.AddTransient<ISwatchRepository, SwatchRepository>();
             builder.Services.AddTransient<IPaletteSwatchRepository, PaletteSwatchRepository>();
+            builder.Services.AddTransient<IProjectRepository, ProjectRepository>();
 
             var app = builder.Build();
 
