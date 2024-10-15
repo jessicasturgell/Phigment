@@ -1,4 +1,5 @@
 import "./Login.css";
+import bgImage from "../../assets/phigment-bgelements.svg";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -11,8 +12,7 @@ export const Login = () => {
 
   useEffect(() => {
     // sets the background image for this page
-    document.body.style.backgroundImage =
-      "url('/src/assets/phigment-bgelements.svg')";
+    document.body.style.backgroundImage = `url(${bgImage})`;
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
     document.body.style.backgroundRepeat = "no-repeat";

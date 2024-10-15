@@ -1,0 +1,8 @@
+.profile-img {
+  width: 350px;
+}
+
+.profile-container {
+  display: flex;
+  margin: 2em;
+}

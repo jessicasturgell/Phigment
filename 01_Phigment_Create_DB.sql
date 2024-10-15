@@ -20,7 +20,10 @@ GO
 
 CREATE TABLE [User] (
     [Id] integer PRIMARY KEY IDENTITY(1,1),
-    [DisplayName] nvarchar(30) NOT NULL
+    [DisplayName] nvarchar(30) NOT NULL,
+    [JoinDateTime] datetime NOT NULL DEFAULT GETDATE(),
+    [Bio] nvarchar(MAX),
+    [Image] nvarchar(100)
 );
 
 CREATE TABLE [Project] (
