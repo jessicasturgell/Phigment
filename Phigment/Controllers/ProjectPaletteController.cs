@@ -52,8 +52,10 @@ namespace Phigment.Controllers
 
         // DELETE api/<ProjectPaletteController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            _projectPaletteRepository.Delete(id);
+            return NoContent();
         }
     }
 }

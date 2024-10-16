@@ -9,3 +9,9 @@ export const addProjectPalette = (projectPalette) => {
     body: JSON.stringify(projectPalette),
   }).then((res) => res.json());
 };
+
+export const deleteProjectPalette = (projectPaletteId) => {
+  return fetch(`${baseUrl}${projectPaletteId}`, {
+    method: "DELETE",
+  });
+};

@@ -240,7 +240,7 @@ namespace Phigment.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT pr.Id AS 'ProjectId', p.Id AS 'PaletteId', p.[Name] AS 'PaletteName', p.UserId, p.IsPublic, s.Id AS 'SwatchId', s.[Name] AS 'SwatchName', s.HEX, s.RGB, s.HSL
+                        SELECT pp.Id AS 'ProjectPaletteId', pr.Id AS 'ProjectId', p.Id AS 'PaletteId', p.[Name] AS 'PaletteName', p.UserId, p.IsPublic, s.Id AS 'SwatchId', s.[Name] AS 'SwatchName', s.HEX, s.RGB, s.HSL
                         FROM ProjectPalette pp
                         LEFT JOIN Project pr
                         ON pp.ProjectId = pr.Id
@@ -271,6 +271,7 @@ namespace Phigment.Repositories
                                 UserId = DbUtils.GetInt(reader, "UserId"),
                                 Name = DbUtils.GetString(reader, "PaletteName"),
                                 IsPublic = DbUtils.GetBoolean(reader, "IsPublic"),
+                                ProjectPaletteId = DbUtils.GetInt(reader, "ProjectPaletteId"),
                                 Swatches = new List<Swatch>()
                             };
 

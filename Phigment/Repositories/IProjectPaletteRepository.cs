@@ -6,5 +6,6 @@ namespace Phigment.Repositories
     {
         void Add(ProjectPalette projectPalette);
         ProjectPalette GetById(int id);
+        public void Delete(int id);
     }
 }

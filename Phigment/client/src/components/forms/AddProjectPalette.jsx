@@ -10,13 +10,19 @@ import {
 import { getAllPalettes } from "../../managers/PaletteManager.jsx";
 import { addProjectPalette } from "../../managers/ProjectPaletteManager.jsx";
 
-function AddProjectPalette({ args, currentUser, project }) {
+function AddProjectPalette({
+  args,
+  currentUser,
+  project,
+  handleUpdatePalettes,
+}) {
   const [palettes, setPalettes] = useState([]);
   const [selectedPaletteId, setSelectedPaletteId] = useState("");
 
   const [modal, setModal] = useState(false);
 
   const toggle = () => {
+    handleUpdatePalettes();
     fetchAllPalettes();
     setModal(!modal);
   };

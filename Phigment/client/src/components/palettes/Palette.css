@@ -106,3 +106,14 @@ td {
   vertical-align: middle;
   text-align: center;
 }
+
+.rm-projectpalette-btn {
+  color: white;
+  font-size: 12px;
+}
+
+.rm-projectpalette-btn:hover {
+  color: rgb(224, 224, 224);
+  font-size: 12px;
+  cursor: pointer;
+}

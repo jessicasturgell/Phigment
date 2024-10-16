@@ -17,6 +17,7 @@ export const ProjectPalette = ({
 
   const hasSwatches = palette.swatches && palette.swatches.length > 0;
 
+
   return (
     <div className="palette-container">
       <Card className="my-2" key={palette.id} color="dark" inverse>

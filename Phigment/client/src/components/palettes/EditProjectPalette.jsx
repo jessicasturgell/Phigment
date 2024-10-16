@@ -1,8 +1,10 @@
 import { CardTitle } from "reactstrap";
 import chroma from "chroma-js";
 import "./Palette.css";
+import TrashBin from "../../assets/trash-bin.png";
+import DeleteProjectPalette from "../forms/DeleteProjectPalette.jsx";
 
-export const EditProjectPalette = ({ palette }) => {
+export const EditProjectPalette = ({ palette, handleUpdatePalettes }) => {
   const getTextColor = (hex) => {
     const contrastWithWhite = chroma.contrast("#ffffff", hex);
     const contrastWithBlack = chroma.contrast("#000000", hex);
@@ -17,6 +19,10 @@ export const EditProjectPalette = ({ palette }) => {
       <CardTitle tag="h5">
         <div className="palette-list-title-container">
           <span style={{ color: "white" }}>{palette.name}</span>
+          <DeleteProjectPalette
+            palette={palette}
+            handleUpdatePalettes={handleUpdatePalettes}
+          />
         </div>
       </CardTitle>
       <div className="flex">

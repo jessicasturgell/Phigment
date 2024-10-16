@@ -38,15 +38,19 @@ export const EditProject = ({ currentUser }) => {
     fetchProjectPalettes();
   }, []);
 
+  const handleUpdatePalettes = () => {
+    fetchProjectPalettes();
+  };
+
   const handleSave = (event) => {
     event.preventDefault();
 
     const editedProject = {
       id: projectId,
-      name: updatedProject.name,
+      name: updatedProject.name || project.name,
       userId: currentUser.id,
-      blurb: updatedProject.blurb,
-      notes: updatedProject.notes,
+      blurb: updatedProject.blurb || project.blurb,
+      notes: updatedProject.notes || project.notes,
       isPublic: false,
     };
 
@@ -110,6 +114,7 @@ export const EditProject = ({ currentUser }) => {
                 <AddProjectPalette
                   currentUser={currentUser}
                   project={project}
+                  handleUpdatePalettes={handleUpdatePalettes}
                 />
               </div>
               <div className="flex">
@@ -118,6 +123,7 @@ export const EditProject = ({ currentUser }) => {
                     key={p.id}
                     palette={p}
                     currentUser={currentUser}
+                    handleUpdatePalettes={handleUpdatePalettes}
                   />
                 ))}
               </div>
