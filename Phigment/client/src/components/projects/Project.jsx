@@ -1,14 +1,25 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import DeleteProject from "../forms/DeleteProject.jsx";
 
-export const Project = ({ project }) => {
+export const Project = ({ project, handleProjectListChange }) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="project">
         {project.name}{" "}
-        <span className="project-mgt-text">
-          <span style={{ marginRight: "25px", color: "magenta" }}>DETAILS</span>
-          <span style={{ color: "yellow" }}>DELETE PROJECT</span>
-        </span>
+        <div className="project-mgt-container">
+          <span
+            style={{ marginRight: "25px", color: "magenta", fontSize: "16px" }}
+            onClick={() => navigate(`/projects/${project.id}`)}
+          >
+            DETAILS
+          </span>
+          <DeleteProject
+            project={project}
+            handleProjectListChange={handleProjectListChange}
+          />
+        </div>
       </div>
       <p className="project-blurb">{project.blurb}</p>
       <hr className="project-list-hr" />

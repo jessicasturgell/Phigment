@@ -8,6 +8,8 @@ import { PaletteList } from "../components/palettes/PaletteList.jsx";
 import { PaletteDetails } from "../components/palettes/PaletteDetails.jsx";
 import { ProjectList } from "../components/projects/ProjectList.jsx";
 import { Profile } from "../components/profile/profile.jsx";
+import { ProjectDetails } from "../components/projects/ProjectDetails.jsx";
+import { EditProject } from "../components/forms/EditProject.jsx";
 
 export const ApplicationViews = () => {
   const [currentUser, setCurrentUser] = useState({});
@@ -40,6 +42,14 @@ export const ApplicationViews = () => {
         <Route
           path="projects"
           element={<ProjectList currentUser={currentUser} />}
+        />
+        <Route
+          path="projects/:projectId"
+          element={<ProjectDetails currentUser={currentUser} />}
+        />
+        <Route
+          path="projects/:projectId/edit"
+          element={<EditProject currentUser={currentUser} />}
         />
         <Route path="profile" element={<Profile currentUser={currentUser} />} />
       </Route>

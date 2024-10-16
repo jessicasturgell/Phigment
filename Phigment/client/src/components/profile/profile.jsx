@@ -18,7 +18,7 @@ export const Profile = ({ currentUser }) => {
   return (
     <>
       <div className="profile-container">
-        <img className="profile-img" src={user.image} />
+        <img className="profile-img" src={user.image} alt="Profile Image" />
         <div>
           <p>{user.displayName}</p>
           <p>Member Since: {user.joinDateTime}</p>
