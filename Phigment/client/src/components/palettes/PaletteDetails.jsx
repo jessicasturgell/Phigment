@@ -31,7 +31,7 @@ export const PaletteDetails = () => {
       <div className="palette-header-container">
         <div className="header-container">
           <h1>
-            <Link className="palette-details-header" to={"/palettes"}>
+            <Link className="palette-details-header" to={-1}>
               {palette.name}
             </Link>{" "}
             Details

@@ -48,6 +48,18 @@ namespace Phigment.Controllers
             return Ok(palettes);
         }
 
+        // GET: api/<PaletteController>/GetAllByProjectId/5
+        [HttpGet("GetAllByProjectIdWithSwatches/{id}")]
+        public IActionResult GetAllByProjectIdWithSwatches(int id)
+        {
+            var palettes = _paletteRepository.GetAllByProjectIdWithSwatches(id);
+            if (palettes == null)
+            {
+                return NotFound();
+            }
+            return Ok(palettes);
+        }
+
         // GET: api/<PaletteController>/5
         [HttpGet("{id}")]
         public IActionResult GetById(int id)

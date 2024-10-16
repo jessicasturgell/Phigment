@@ -92,6 +92,7 @@ namespace Phigment.Repositories
                 }
             }
         }
+
         public Project GetById(int id)
         {
             using (var conn = Connection)

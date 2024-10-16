@@ -232,6 +232,72 @@ namespace Phigment.Repositories
             }
         }
 
+        public List<Palette> GetAllByProjectIdWithSwatches(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT pr.Id AS 'ProjectId', p.Id AS 'PaletteId', p.[Name] AS 'PaletteName', p.UserId, p.IsPublic, s.Id AS 'SwatchId', s.[Name] AS 'SwatchName', s.HEX, s.RGB, s.HSL
+                        FROM ProjectPalette pp
+                        LEFT JOIN Project pr
+                        ON pp.ProjectId = pr.Id
+                        LEFT JOIN Palette p
+                        ON pp.PaletteId = p.Id
+                        LEFT JOIN PaletteSwatch ps
+                        ON ps.PaletteId = p.Id
+                        LEFT JOIN Swatch s
+                        ON ps.SwatchId = s.Id
+                        WHERE pr.Id = @id
+                        ORDER BY p.[Name]";
+
+                    DbUtils.AddParameter(cmd, "@id", id);
+
+                    var reader = cmd.ExecuteReader();
+
+                    var palettes = new List<Palette>();
+                    while (reader.Read())
+                    {
+                        var paletteId = DbUtils.GetInt(reader, "PaletteId");
+
+                        var existingPalette = palettes.FirstOrDefault(p => p.Id == paletteId);
+                        if (existingPalette == null)
+                        {
+                            existingPalette = new Palette
+                            {
+                                Id = paletteId,
+                                UserId = DbUtils.GetInt(reader, "UserId"),
+                                Name = DbUtils.GetString(reader, "PaletteName"),
+                                IsPublic = DbUtils.GetBoolean(reader, "IsPublic"),
+                                Swatches = new List<Swatch>()
+                            };
+
+                            palettes.Add(existingPalette);
+
+                        }
+
+                        if (DbUtils.IsNotDbNull(reader, "SwatchId"))
+                        {
+                            existingPalette.Swatches.Add(new Swatch()
+                            {
+                                Id = DbUtils.GetInt(reader, "SwatchId"),
+                                Name = DbUtils.GetString(reader, "SwatchName"),
+                                HEX = DbUtils.GetString(reader, "HEX"),
+                                RGB = DbUtils.GetString(reader, "RGB"),
+                                HSL = DbUtils.GetString(reader, "HSL")
+                            });
+                        }
+                    }
+
+                    reader.Close();
+
+                    return palettes;
+                }
+            }
+        }
+
         public Palette GetByPaletteIdWithSwatches(int id)
         {
             using (var conn = Connection)

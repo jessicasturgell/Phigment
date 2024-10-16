@@ -12,5 +12,6 @@ namespace Phigment.Repositories
         public void Delete(int id);
         public List<Palette> GetAllByUserIdWithSwatches(int id);
         public Palette GetByPaletteIdWithSwatches(int id);
+        public List<Palette> GetAllByProjectIdWithSwatches(int id);
     }
 }

@@ -5,10 +5,18 @@ import {
   updateProject,
 } from "../../managers/ProjectManager.jsx";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
+import {
+  getAllPalettes,
+  getAllPalettesByProjectIdWithSwatches,
+} from "../../managers/PaletteManager.jsx";
+import { ProjectPalette } from "../palettes/ProjectPalette.jsx";
+import { EditProjectPalette } from "../palettes/EditProjectPalette.jsx";
+import AddProjectPalette from "./AddProjectPalette.jsx";
 
 export const EditProject = ({ currentUser }) => {
   let { projectId } = useParams();
   const [project, setProject] = useState({});
+  const [palettes, setPalettes] = useState([]);
   const [updatedProject, setUpdatedProject] = useState({});
 
   const navigate = useNavigate();
@@ -17,8 +25,17 @@ export const EditProject = ({ currentUser }) => {
     getProjectById(projectId).then((project) => setProject(project));
   };
 
+  const fetchProjectPalettes = () => {
+    if (currentUser) {
+      getAllPalettesByProjectIdWithSwatches(projectId).then((palettes) =>
+        setPalettes(palettes)
+      );
+    }
+  };
+
   useEffect(() => {
     fetchProject();
+    fetchProjectPalettes();
   }, []);
 
   const handleSave = (event) => {
@@ -86,6 +103,24 @@ export const EditProject = ({ currentUser }) => {
                   setUpdatedProject(projectCopy);
                 }}
               ></Input>
+            </FormGroup>
+            <FormGroup>
+              <div className="flex">
+                <Label>Color Palettes</Label>
+                <AddProjectPalette
+                  currentUser={currentUser}
+                  project={project}
+                />
+              </div>
+              <div className="flex">
+                {palettes.map((p) => (
+                  <EditProjectPalette
+                    key={p.id}
+                    palette={p}
+                    currentUser={currentUser}
+                  />
+                ))}
+              </div>
             </FormGroup>
             <div className="cancel-btn-container">
               <Button

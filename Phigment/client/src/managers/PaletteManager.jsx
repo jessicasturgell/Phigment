@@ -12,6 +12,12 @@ export const getAllPalettesWithSwatches = (currentUser) => {
   );
 };
 
+export const getAllPalettesByProjectIdWithSwatches = (projectId) => {
+  return fetch(`${baseUrl}GetAllByProjectIdWithSwatches/${projectId}`).then(
+    (res) => res.json()
+  );
+};
+
 export const getPaletteByIdWithSwatches = (paletteId) => {
   return fetch(`${baseUrl}GetByIdWithSwatches/${paletteId}`).then((res) =>
     res.json()

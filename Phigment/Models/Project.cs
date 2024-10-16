@@ -8,5 +8,6 @@
         public string? Blurb { get; set; }
         public string? Notes { get; set; }
         public bool IsPublic { get; set; }
+        public List<Palette>? Palettes { get; set; }
     }
 }

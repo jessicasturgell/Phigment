@@ -1,19 +1,30 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getProjectById } from "../../managers/ProjectManager.jsx";
 import { useEffect, useState } from "react";
-import DeleteProject from "../forms/DeleteProject.jsx";
+import { getAllPalettesByProjectIdWithSwatches } from "../../managers/PaletteManager.jsx";
+import { ProjectPalette } from "../palettes/ProjectPalette.jsx";
 
-export const ProjectDetails = () => {
+export const ProjectDetails = ({ currentUser }) => {
   let { projectId } = useParams();
   const [project, setProject] = useState({});
+  const [palettes, setPalettes] = useState([]);
   const navigate = useNavigate();
 
   const fetchProject = () => {
     getProjectById(projectId).then((project) => setProject(project));
   };
 
+  const fetchProjectPalettes = () => {
+    if (currentUser) {
+      getAllPalettesByProjectIdWithSwatches(projectId).then((palettes) =>
+        setPalettes(palettes)
+      );
+    }
+  };
+
   useEffect(() => {
     fetchProject();
+    fetchProjectPalettes();
   }, []);
 
   return (
@@ -43,7 +54,11 @@ export const ProjectDetails = () => {
       <div className="project-banner">Notes</div>
       <p className="project-blurb">{project.notes}</p>
       <div className="project-banner">Color Palettes</div>
-      <p className="project-blurb">To do</p>
+      <div className="project-blurb flex">
+        {palettes.map((p) => (
+          <ProjectPalette key={p.id} palette={p} currentUser={currentUser} />
+        ))}
+      </div>
       <hr className="project-list-hr" />
     </>
   );
