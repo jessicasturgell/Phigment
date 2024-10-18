@@ -18,3 +18,12 @@ body {
 .black {
   color: black;
 }
+
+.flex {
+  display: flex;
+}
+
+.flex-space-btwn {
+  display: flex;
+  justify-content: space-between;
+}

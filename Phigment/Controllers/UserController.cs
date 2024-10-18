@@ -52,6 +52,8 @@ namespace Phigment.Controllers
         [HttpPost]
         public IActionResult Post(User user)
         {
+            user.JoinDateTime = DateTime.Now;
+            user.Bio = "";
             _userRepository.Add(user);
             return CreatedAtAction("Get", new { id = user.Id }, user);
         }

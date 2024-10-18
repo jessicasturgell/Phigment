@@ -77,5 +77,17 @@ namespace Phigment.Controllers
             _swatchRepository.Delete(id);
             return NoContent();
         }
+
+        // GET: api/<SwatchController>/GetByPaletteId/5
+        [HttpGet("GetByPaletteId/{id}")]
+        public IActionResult GetByPaletteId(int id)
+        {
+            var swatches = _swatchRepository.GetByPaletteId(id);
+            if (swatches == null)
+            {
+                return NotFound();
+            }
+            return Ok(swatches);
+        }
     }
 }

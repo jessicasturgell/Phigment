@@ -1,4 +1,5 @@
 import "./Login.css";
+import bgImage from "../../assets/phigment-bgelements.svg";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -11,13 +12,13 @@ import {
 export const Register = () => {
   const [user, setUser] = useState({
     displayName: "",
+    image: "",
   });
   const navigate = useNavigate();
 
   useEffect(() => {
     // sets the background image for this page
-    document.body.style.backgroundImage =
-      "url('src/assets/phigment-bgelements-flipped.svg')";
+    document.body.style.backgroundImage = `url(${bgImage})`;
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
     document.body.style.backgroundRepeat = "no-repeat";
@@ -68,6 +69,7 @@ export const Register = () => {
   const updateUser = (evt) => {
     const copy = { ...user };
     copy[evt.target.id] = evt.target.value;
+    copy.image = `https://api.dicebear.com/9.x/bottts-neutral/svg?seed=${evt.target.value}`;
     setUser(copy);
   };
 

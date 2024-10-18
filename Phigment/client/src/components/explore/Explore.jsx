@@ -47,7 +47,7 @@ export const Explore = ({ currentUser }) => {
 
   const getAnalogous = () => {
     const hsl = chroma(color).hsl();
-    const analogousLeftHue = (hsl[0] - 30) % 360;
+    const analogousLeftHue = (hsl[0] - 30 + 360) % 360;
     const analogousLeft = chroma.hsl(analogousLeftHue, hsl[1], hsl[2]).hex();
     const analogousRightHue = (hsl[0] + 30) % 360;
     const analogousRight = chroma.hsl(analogousRightHue, hsl[1], hsl[2]).hex();
@@ -56,7 +56,7 @@ export const Explore = ({ currentUser }) => {
 
   const getTriadic = () => {
     const hsl = chroma(color).hsl();
-    const triadicLeftHue = (hsl[0] - 120) % 360;
+    const triadicLeftHue = (hsl[0] - 120 + 360) % 360;
     const triadicLeft = chroma.hsl(triadicLeftHue, hsl[1], hsl[2]).hex();
     const triadicRightHue = (hsl[0] + 120) % 360;
     const triadicRight = chroma.hsl(triadicRightHue, hsl[1], hsl[2]).hex();

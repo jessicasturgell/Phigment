@@ -10,5 +10,6 @@ namespace Phigment.Repositories
         public void Add(Swatch swatch);
         public void Update(Swatch swatch);
         public void Delete(int id);
+        public List<Swatch> GetByPaletteId(int id);
     }
 }

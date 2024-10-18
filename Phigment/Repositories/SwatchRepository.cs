@@ -173,5 +173,45 @@ namespace Phigment.Repositories
                 }
             }
         }
+
+        public List<Swatch> GetByPaletteId(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT s.Id, s.UserId, s.[Name], s.HEX, s.RGB, s.HSL
+                        FROM Swatch s
+                        LEFT JOIN PaletteSwatch ps
+                        ON ps.SwatchId = s.Id
+                        LEFT JOIN Palette p
+                        ON ps.PaletteId = p.Id
+                        WHERE p.Id = @id
+";
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    var reader = cmd.ExecuteReader();
+
+                    var swatches = new List<Swatch>();
+                    while (reader.Read())
+                    {
+                        swatches.Add(new Swatch()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            UserId = DbUtils.GetInt(reader, "UserId"),
+                            Name = DbUtils.GetString(reader, "Name"),
+                            HEX = DbUtils.GetString(reader, "HEX"),
+                            RGB = DbUtils.GetString(reader, "RGB"),
+                            HSL = DbUtils.GetString(reader, "HSL"),
+                        });
+                    }
+                    reader.Close();
+
+                    return swatches;
+                }
+            }
+        }
     }
 }

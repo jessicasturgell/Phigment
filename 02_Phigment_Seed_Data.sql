@@ -2,10 +2,10 @@
 GO
 
 SET IDENTITY_INSERT [User] ON
-INSERT INTO [User] ([Id], [DisplayName]) VALUES
-(1, 'PestoPingu'),
-(2, 'MizMooDeng'),
-(3, 'HuaHuaLOL');
+INSERT INTO [User] ([Id], [DisplayName], [JoinDateTime], [Bio], [Image]) VALUES
+(1, 'PestoPingu', '2023-01-15 10:30:00', 'Lover of all things green and delicious.', 'https://api.dicebear.com/9.x/bottts-neutral/svg?seed=PestoPingu'),
+(2, 'MizMooDeng', '2023-03-01 14:45:00', 'Creator of the P!nk Hippo Club, artistic director.', 'https://api.dicebear.com/9.x/bottts-neutral/svg?seed=MizMooDeng'),
+(3, 'HuaHuaLOL', '2023-05-22 09:00:00', 'Future sushi chef and part-time color enthusiast.', 'https://api.dicebear.com/9.x/bottts-neutral/svg?seed=HuaHuaLOL');
 SET IDENTITY_INSERT [User] OFF
 
 SET IDENTITY_INSERT [Project] ON
@@ -30,15 +30,15 @@ SET IDENTITY_INSERT [Palette] OFF
 
 SET IDENTITY_INSERT [Swatch] ON
 INSERT INTO [Swatch] ([Id], [UserId], [Name], [HEX], [RGB], [HSL]) VALUES
-(1, 1, 'Yellow', '#FFFF00', '255,255,0', '60,100%,50%'),
-(2, 1, 'Light Yellow', '#FFFFE0', '255,255,224', '60,100%,94%'),
-(3, 1, 'White', '#FFFFFF', '255,255,255', '0,0%,100%'),
-(4, 2, 'Pretty Pink', '#FF69B4', '255,105,180', '330,100%,71%'),
-(5, 2, 'Silver', '#C0C0C0', '192,192,192', '0,0%,75%'),
-(6, 2, 'Black', '#000000', '0,0,0', '0,0%,0%'),
-(7, 3, 'Carrot', '#FFA500', '255,165,0', '39,100%,50%'),
-(8, 3, 'Rice', '#E3CFCF', '227,207,207', '0,10%,89%'),
-(9, 3, 'Black', '#000000', '0,0,0', '0,0%,0%');
+(1, 1, 'Yellow', '#FFFF00', '255,255,0', '60,100,50'),
+(2, 1, 'Light Yellow', '#FFFFE0', '255,255,224', '60,100,94'),
+(3, 1, 'White', '#FFFFFF', '255,255,255', '0,0,100'),
+(4, 2, 'Pretty Pink', '#FF69B4', '255,105,180', '330,100,71'),
+(5, 2, 'Silver', '#C0C0C0', '192,192,192', '0,0,75'),
+(6, 2, 'Black', '#000000', '0,0,0', '0,0,0'),
+(7, 3, 'Carrot', '#FFA500', '255,165,0', '39,100,50'),
+(8, 3, 'Rice', '#E3CFCF', '227,207,207', '0,10,89'),
+(9, 3, 'Black', '#000000', '0,0,0', '0,0,0');
 SET IDENTITY_INSERT [Swatch] OFF
 
 SET IDENTITY_INSERT [UserPalette] ON

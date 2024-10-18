@@ -25,6 +25,7 @@ function AddSwatchToPalette({ args, currentUser, color }) {
   const toggle = () => {
     setSelectedPaletteId(null);
     setModal(!modal);
+    getAllPalettes(currentUser).then((palettes) => setPalettes(palettes));
   };
 
   useEffect(() => {

@@ -36,11 +36,60 @@ namespace Phigment.Controllers
             return Ok(palettes);
         }
 
+        // GET: api/<PaletteController>/GetAllByUserId/5
+        [HttpGet("GetAllByUserIdWithSwatches/{id}")]
+        public IActionResult GetAllByUserIdWithSwatches(int id)
+        {
+            var palettes = _paletteRepository.GetAllByUserIdWithSwatches(id);
+            if (palettes == null)
+            {
+                return NotFound();
+            }
+            return Ok(palettes);
+        }
+
+        // GET: api/<PaletteController>/GetAllUserProfilePalettesByUserIdWithSwatches/5
+        [HttpGet("GetAllUserProfilePalettesByUserIdWithSwatches/{id}")]
+        public IActionResult GetAllUserProfilePalettesByUserIdWithSwatches(int id)
+        {
+            var palettes = _paletteRepository.GetAllUserProfilePalettesByUserIdWithSwatches(id);
+            if (palettes == null)
+            {
+                return NotFound();
+            }
+            return Ok(palettes);
+        }
+
+        // GET: api/<PaletteController>/GetAllByProjectId/5
+        [HttpGet("GetAllByProjectIdWithSwatches/{id}")]
+        public IActionResult GetAllByProjectIdWithSwatches(int id)
+        {
+            var palettes = _paletteRepository.GetAllByProjectIdWithSwatches(id);
+            if (palettes == null)
+            {
+                return NotFound();
+            }
+            return Ok(palettes);
+        }
+
         // GET: api/<PaletteController>/5
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
             var palette = _paletteRepository.GetById(id);
+
+            if (palette == null)
+            {
+                return NotFound();
+            }
+            return Ok(palette);
+        }
+
+        // GET: api/<PaletteController>/GetByIdWithSwatches/5
+        [HttpGet("GetByIdWithSwatches/{id}")]
+        public IActionResult GetByIdWithSwatches(int id)
+        {
+            var palette = _paletteRepository.GetByPaletteIdWithSwatches(id);
 
             if (palette == null)
             {
