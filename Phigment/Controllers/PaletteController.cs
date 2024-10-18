@@ -48,6 +48,18 @@ namespace Phigment.Controllers
             return Ok(palettes);
         }
 
+        // GET: api/<PaletteController>/GetAllUserProfilePalettesByUserIdWithSwatches/5
+        [HttpGet("GetAllUserProfilePalettesByUserIdWithSwatches/{id}")]
+        public IActionResult GetAllUserProfilePalettesByUserIdWithSwatches(int id)
+        {
+            var palettes = _paletteRepository.GetAllUserProfilePalettesByUserIdWithSwatches(id);
+            if (palettes == null)
+            {
+                return NotFound();
+            }
+            return Ok(palettes);
+        }
+
         // GET: api/<PaletteController>/GetAllByProjectId/5
         [HttpGet("GetAllByProjectIdWithSwatches/{id}")]
         public IActionResult GetAllByProjectIdWithSwatches(int id)

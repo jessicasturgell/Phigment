@@ -13,5 +13,6 @@ namespace Phigment.Repositories
         public List<Palette> GetAllByUserIdWithSwatches(int id);
         public Palette GetByPaletteIdWithSwatches(int id);
         public List<Palette> GetAllByProjectIdWithSwatches(int id);
+        public List<Palette> GetAllUserProfilePalettesByUserIdWithSwatches(int userId);
     }
 }

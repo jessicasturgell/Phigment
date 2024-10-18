@@ -9,9 +9,15 @@ import {
 } from "reactstrap";
 import { updatePalette } from "../../managers/PaletteManager.jsx";
 
-function RenamePalette({ args, currentUser, palette, handlePaletteListChange }) {
+function RenamePalette({
+  args,
+  currentUser,
+  palette,
+  handlePaletteListChange,
+}) {
   const [modal, setModal] = useState(false);
   const [updatedPalette, setUpdatedPalette] = useState({});
+  const [isPublic, setIsPublic] = useState(false);
 
   const toggle = () => {
     handlePaletteListChange();
@@ -21,9 +27,9 @@ function RenamePalette({ args, currentUser, palette, handlePaletteListChange }) 
   const handleSave = () => {
     const editedPalette = {
       id: palette.id,
-      name: updatedPalette.name,
+      name: updatedPalette.name || palette.name,
       userId: currentUser.id,
-      isPublic: false,
+      isPublic: isPublic,
     };
 
     updatePalette(editedPalette).then(toggle);
@@ -32,19 +38,27 @@ function RenamePalette({ args, currentUser, palette, handlePaletteListChange }) 
   return (
     <div>
       <span className="rename-delete-palette" onClick={toggle}>
-        rename
+        edit
       </span>
       <Modal isOpen={modal} toggle={toggle} {...args}>
-        <ModalHeader toggle={toggle}>Rename Palette</ModalHeader>
+        <ModalHeader toggle={toggle}>Edit Palette</ModalHeader>
         <ModalBody>
           <Input
-            placeholder={palette.name}
+            defaultValue={palette.name}
             onChange={(event) => {
               const paletteCopy = { ...palette };
               paletteCopy.name = event.target.value;
               setUpdatedPalette(paletteCopy);
             }}
           ></Input>
+          <br />
+          <Input
+            type="checkbox"
+            style={{ marginRight: "10px" }}
+            checked={isPublic}
+            onChange={() => setIsPublic(!isPublic)}
+          ></Input>
+          Display in profile showcase.
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={handleSave}>

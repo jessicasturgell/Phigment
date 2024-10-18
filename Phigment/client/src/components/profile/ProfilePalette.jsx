@@ -1,11 +1,8 @@
 import { Card, CardBody, CardTitle } from "reactstrap";
 import chroma from "chroma-js";
-import "./Palette.css";
 import { Link } from "react-router-dom";
 
-export const ProjectPalette = ({
-  palette,
-}) => {
+export const ProfilePalette = ({ palette }) => {
   const getTextColor = (hex) => {
     const contrastWithWhite = chroma.contrast("#ffffff", hex);
     const contrastWithBlack = chroma.contrast("#000000", hex);
@@ -14,7 +11,6 @@ export const ProjectPalette = ({
   };
 
   const hasSwatches = palette.swatches && palette.swatches.length > 0;
-
 
   return (
     <div className="palette-container">

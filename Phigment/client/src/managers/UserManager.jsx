@@ -19,3 +19,13 @@ export const createUser = (user) => {
     body: JSON.stringify(user),
   }).then((res) => res.json());
 };
+
+export const updateUser = (currentUser) => {
+  return fetch(`${apiUrl}${currentUser.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(currentUser),
+  });
+};

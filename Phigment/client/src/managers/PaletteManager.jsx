@@ -24,6 +24,12 @@ export const getPaletteByIdWithSwatches = (paletteId) => {
   );
 };
 
+export const getProfilePaletteByUserIdWithSwatches = (currentUser) => {
+  return fetch(
+    `${baseUrl}GetAllUserProfilePalettesByUserIdWithSwatches/${currentUser.id}`
+  ).then((res) => res.json());
+};
+
 export const addPalette = (palette) => {
   return fetch(`${baseUrl}`, {
     method: "POST",

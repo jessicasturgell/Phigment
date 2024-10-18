@@ -7,3 +7,25 @@
   display: flex;
   margin: 2em;
 }
+
+.profile-info-container {
+  margin: 1em;
+  width: 350px;
+}
+
+.profile-info-label {
+  font-weight: bold;
+}
+
+.profile-showcase {
+  background-color: #212529;
+  color: magenta;
+  font-size: 24px;
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-palette-container {
+  display: flex;
+}
