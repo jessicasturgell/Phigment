@@ -16,7 +16,7 @@ function DeleteProject({ args, project, handleProjectListChange }) {
 
   return (
     <>
-      <span style={{ color: "yellow", fontSize: "16px" }} onClick={toggle}>
+      <span className="proj-delete" style={{ fontSize: "16px" }} onClick={toggle}>
         DELETE PROJECT
       </span>
       <Modal isOpen={modal} toggle={toggle} {...args}>

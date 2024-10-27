@@ -18,14 +18,52 @@
 }
 
 .profile-showcase {
-  background-color: #212529;
-  color: magenta;
-  font-size: 24px;
-  padding: 0.5em;
-  display: flex;
-  justify-content: space-between;
+  background-color: #212529 !important;
+  color: magenta !important;
+  font-size: 24px !important;
+  justify-content: space-between !important;
+  border: none;
 }
 
 .profile-palette-container {
   display: flex;
+  background-color: #aab0cc !important;
+}
+
+.profile-palette-list-td {
+  border-right: 2px solid #212529;
+  vertical-align: top;
+  background-color: #aab0cc !important;
+}
+
+.profile-project-list-td {
+  vertical-align: top;
+  background-color: #aab0cc !important;
+}
+
+.showcase-table {
+  table-layout: fixed;
+  height: calc(100vh - 490px);
+  margin: 0;
+}
+
+.profile-project {
+  background-color: #212529;
+  color: cyan;
+  font-size: 24px;
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile-project-blurb {
+  padding: 1rem;
+  border: 1px solid #212529;
+}
+
+.profile-project-mgt-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
 }

@@ -19,7 +19,6 @@ export const ProfilePaletteList = ({ currentUser }) => {
 
   return (
     <>
-      <div className="profile-showcase">Palettes Showcase</div>
       <div className="profile-palette-container">
         {palettes.length > 0
           ? palettes.map((p) => <ProfilePalette key={p.id} palette={p} />)

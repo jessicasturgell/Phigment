@@ -35,6 +35,18 @@ namespace Phigment.Controllers
             return Ok(projects);
         }
 
+        // GET: api/<ProjectController>/GetAllUserProfileProjectByUserId/5
+        [HttpGet("GetAllUserProfileProjectsByUserId/{id}")]
+        public IActionResult GetAllUserProfileProjectByUserId(int id)
+        {
+            var projects = _projectRepository.GetAllUserProfileProjectsByUserId(id);
+            if (projects == null)
+            {
+                return NotFound();
+            }
+            return Ok(projects);
+        }
+
         // GET api/<ProjectController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)

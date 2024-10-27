@@ -10,7 +10,8 @@ export const Project = ({ project, handleProjectListChange }) => {
         {project.name}{" "}
         <div className="project-mgt-container">
           <span
-            style={{ marginRight: "25px", color: "magenta", fontSize: "16px" }}
+            className="proj-details-span"
+            style={{ marginRight: "25px", fontSize: "16px" }}
             onClick={() => navigate(`/projects/${project.id}`)}
           >
             DETAILS
