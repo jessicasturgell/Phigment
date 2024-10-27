@@ -42,9 +42,11 @@ CREATE TABLE [UserProject] (
     [UserId] integer NOT NULL,
     [ProjectId] integer NOT NULL,
     CONSTRAINT [FK_UserProject_User] FOREIGN KEY ([UserId])
-        REFERENCES [User] ([Id]),
+        REFERENCES [User] ([Id])
+        ON DELETE CASCADE,
     CONSTRAINT [FK_UserProject_Project] FOREIGN KEY ([ProjectId])
         REFERENCES [Project] ([Id])
+        ON DELETE CASCADE
 );
 
 CREATE TABLE [Palette] (
@@ -72,9 +74,11 @@ CREATE TABLE [UserPalette] (
     [UserId] integer NOT NULL,
     [PaletteId] integer NOT NULL,
     CONSTRAINT [FK_UserPalette_User] FOREIGN KEY ([UserId])
-        REFERENCES [User] ([Id]),
+        REFERENCES [User] ([Id])
+        ON DELETE CASCADE,
     CONSTRAINT [FK_UserPalette_Palette] FOREIGN KEY ([PaletteId])
         REFERENCES [Palette] ([Id])
+        ON DELETE CASCADE
 );
 
 CREATE TABLE [ProjectPalette] (
@@ -82,9 +86,11 @@ CREATE TABLE [ProjectPalette] (
     [ProjectId] integer NOT NULL,
     [PaletteId] integer NOT NULL,
     CONSTRAINT [FK_ProjectPalette_Project] FOREIGN KEY ([ProjectId])
-        REFERENCES [Project] ([Id]),
+        REFERENCES [Project] ([Id])
+        ON DELETE CASCADE,
     CONSTRAINT [FK_ProjectPalette_Palette] FOREIGN KEY ([PaletteId])
         REFERENCES [Palette] ([Id])
+        ON DELETE CASCADE
 );
 
 CREATE TABLE [PaletteSwatch] (

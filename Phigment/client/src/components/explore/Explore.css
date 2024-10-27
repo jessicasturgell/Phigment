@@ -16,10 +16,11 @@
   padding-right: 5px;
 }
 
-/* .swatch-btn {
-} */
+.swatch-btn {
+  padding-right: 3px;
+}
 
-.swatch-btn:hover {
+.swatch-btn-img:hover {
   border: 2px solid white;
   border-radius: 15px;
   cursor: pointer;

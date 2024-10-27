@@ -118,7 +118,12 @@ function AddSwatchToPalette({ args, currentUser, color }) {
 
   return (
     <div>
-      <img width="20px" src="src/assets/add.png" onClick={toggle} />
+      <img
+        width="20px"
+        src="src/assets/add.png"
+        onClick={toggle}
+        className="swatch-btn-img"
+      />
       <Modal isOpen={modal} toggle={toggle} {...args}>
         <ModalHeader toggle={toggle}>Save Color Swatch</ModalHeader>
         <ModalBody>
