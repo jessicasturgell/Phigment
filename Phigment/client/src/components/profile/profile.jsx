@@ -5,6 +5,8 @@ import { getAllPalettesWithSwatches } from "../../managers/PaletteManager.jsx";
 import { getAllProjects } from "../../managers/ProjectManager.jsx";
 import EditUser from "../forms/EditUser.jsx";
 import { ProfilePaletteList } from "./ProfilePaletteList.jsx";
+import { Table } from "reactstrap";
+import { ProfileProjectList } from "./ProfileProjectList.jsx";
 
 export const Profile = ({ currentUser }) => {
   const [user, setUser] = useState({});
@@ -76,7 +78,22 @@ export const Profile = ({ currentUser }) => {
           />
         </div>
       </div>
-      <ProfilePaletteList currentUser={currentUser} />
+      <Table className="showcase-table">
+        <tbody>
+          <tr>
+            <td className="profile-showcase">Palettes Showcase</td>
+            <td className="profile-showcase">Projects Showcase</td>
+          </tr>
+          <tr className="tr-height">
+            <td className="profile-palette-list-td">
+              <ProfilePaletteList currentUser={currentUser} />
+            </td>
+            <td className="profile-project-list-td">
+              <ProfileProjectList currentUser={currentUser} />
+            </td>
+          </tr>
+        </tbody>
+      </Table>
     </>
   );
 };

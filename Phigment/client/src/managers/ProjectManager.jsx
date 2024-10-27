@@ -35,3 +35,9 @@ export const updateProject = (project) => {
     body: JSON.stringify(project),
   });
 };
+
+export const getProfileProjectsByUserId = (currentUser) => {
+  return fetch(
+    `${baseUrl}GetAllUserProfileProjectsByUserId/${currentUser.id}`
+  ).then((res) => res.json());
+};

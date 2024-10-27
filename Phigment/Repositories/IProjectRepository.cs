@@ -10,5 +10,6 @@ namespace Phigment.Repositories
         public Project GetById(int id);
         public void Delete(int id);
         public void Update(Project project);
+        public List<Project> GetAllUserProfileProjectsByUserId(int id);
     }
 }

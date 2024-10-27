@@ -32,7 +32,7 @@ export const ProjectDetails = ({ currentUser }) => {
       <div className="palette-header-container">
         <div className="header-container">
           <h1>
-            <Link className="palette-details-header" to={"/projects"}>
+            <Link className="palette-details-header" to={-1}>
               {project.name}
             </Link>{" "}
             Details
@@ -42,8 +42,8 @@ export const ProjectDetails = ({ currentUser }) => {
       <div className="project">
         {project.name}{" "}
         <div className="project-mgt-container">
-          <span
-            style={{ color: "yellow", fontSize: "16px" }}
+          <span className="proj-edit-btn-span"
+            style={{ fontSize: "16px" }}
             onClick={() => navigate(`/projects/${project.id}/edit`)}
           >
             EDIT PROJECT

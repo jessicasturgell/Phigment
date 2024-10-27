@@ -66,3 +66,30 @@
   align-items: flex-end;
   justify-content: flex-end;
 }
+
+.proj-details-span {
+  color: magenta;
+}
+
+.proj-details-span:hover {
+  color: rgb(207, 0, 207);
+  cursor: pointer;
+}
+
+.proj-delete {
+  color: yellow !important;
+}
+
+.proj-delete:hover {
+  color: rgb(219, 219, 15) !important;
+  cursor: pointer !important;
+}
+
+.proj-edit-btn-span {
+  color: yellow;
+}
+
+.proj-edit-btn-span:hover {
+  color: rgb(212, 212, 23);
+  cursor: pointer;
+}

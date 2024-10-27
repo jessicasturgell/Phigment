@@ -5,11 +5,7 @@ import {
   updateProject,
 } from "../../managers/ProjectManager.jsx";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
-import {
-  getAllPalettes,
-  getAllPalettesByProjectIdWithSwatches,
-} from "../../managers/PaletteManager.jsx";
-import { ProjectPalette } from "../palettes/ProjectPalette.jsx";
+import { getAllPalettesByProjectIdWithSwatches } from "../../managers/PaletteManager.jsx";
 import { EditProjectPalette } from "../palettes/EditProjectPalette.jsx";
 import AddProjectPalette from "./AddProjectPalette.jsx";
 
@@ -18,6 +14,7 @@ export const EditProject = ({ currentUser }) => {
   const [project, setProject] = useState({});
   const [palettes, setPalettes] = useState([]);
   const [updatedProject, setUpdatedProject] = useState({});
+  const [isPublic, setIsPublic] = useState(false);
 
   const navigate = useNavigate();
 
@@ -51,7 +48,7 @@ export const EditProject = ({ currentUser }) => {
       userId: currentUser.id,
       blurb: updatedProject.blurb || project.blurb,
       notes: updatedProject.notes || project.notes,
-      isPublic: false,
+      isPublic: isPublic,
     };
 
     updateProject(editedProject).then(navigate(`/projects/${projectId}`));
@@ -127,6 +124,15 @@ export const EditProject = ({ currentUser }) => {
                   />
                 ))}
               </div>
+            </FormGroup>
+            <FormGroup>
+              <Input
+                type="checkbox"
+                style={{ marginRight: "10px" }}
+                checked={isPublic}
+                onChange={() => setIsPublic(!isPublic)}
+              ></Input>
+              Display in profile showcase.
             </FormGroup>
             <div className="cancel-btn-container">
               <Button
