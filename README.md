@@ -1,6 +1,35 @@
 # Phigment
 ## Overview
 *Phigment* is a full-stack application designed for color palette creation and project management. Built with C#, React, and SQL Server, the app utilizes an **Explore** page that allows users to input a color in order to generate color harmonies based on that color input. Users can use these color harmonies to create and organize **Color Palettes** filled with individual **Color Swatches**. Users have access to a **My Projects** page, which allows them to plan and take notes on creative projects. **Palettes** can be linked to **Projects** for ease of access. Users can also personalize their **Profile** by showcasing their favorite palettes and projects publicly.
+
+## Screenshots
+### Login
+![Login](./Phigment/client/screenshots/login.png)
+
+### Welcome
+![Welcome](./Phigment/client/screenshots/welcome.png)
+
+### Explore
+![Explore](./Phigment/client/screenshots/explore.png)
+
+### Palettes
+![Palettes](./Phigment/client/screenshots/palettes.png)
+
+### Palette Details
+![Palette Details](./Phigment/client/screenshots/swatches.png)
+
+### Projects
+![Projects](./Phigment/client/screenshots/projects.png)
+
+### Project Details
+![Project Details](./Phigment/client/screenshots/project.png)
+
+### Edit Project
+![Edit Project](./Phigment/client/screenshots/editproject.png)
+
+### Profile
+![Profile](./Phigment/client/screenshots/profile.png)
+
 ## Installation
 ### Install Dependencies:
 - Install Microsoft SQL Server and Visual Studio Community.
